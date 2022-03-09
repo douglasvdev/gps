@@ -77,10 +77,16 @@
             });
         });
 
+        $(function(){
+            var successMessage = '@TempData["MsgSucesso"]'
+            if(successMessage != '')
+                alertify.success(successMessage);
+        });  /*Função para receber valor de MsgSucesso da Controller e tratar para Alertify*/
+
         function Inativar(id) {
-            alertify.confirm('Lista de Contas', 'Confirmar excluisão ?',function(){
+            alertify.confirm('Lista de Contas', 'Confirmar exclusão ?',function(){
                 window.location.href = '@Url.Action("Inativar","Conta")/'+id;
-            },null);
-        }
+            },null );
+        } /*Função para Modal de confirmação de exclusão */
     </script>
 }

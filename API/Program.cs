@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen(c =>
         new Microsoft.OpenApi.Models.OpenApiInfo { 
             Title ="API GPS", 
             Version = "V1.1.0", 
-            Description = "Projeto de gestão de futebol amador!",
+            Description = "API de projeto de gestão de Futebol Amador",
             Contact = new Microsoft.OpenApi.Models.OpenApiContact
             {
                 Name = "DAguiar",
@@ -34,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API aula VALDUR");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API GPS");
     });
 }
 

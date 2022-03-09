@@ -13,12 +13,15 @@ namespace MVC.Controllers
 {
     public class ContaController : Controller
     {
+        #region CONSTRUTOR
         private readonly Contexto _context;
 
         public ContaController(Contexto context)
         {
             _context = context;
         }
+
+        #endregion
 
         #region VISUALIZAR
 
@@ -197,7 +200,7 @@ namespace MVC.Controllers
                         throw;
                     }
                 }
-                TempData["SuccessMessage"] = "Deleted Successfully";
+                TempData["MsgSucesso"] = "Deletado com Sucesso";  //Transportar valor de MsgSucesso para função de alertify
                 return RedirectToAction(nameof(Index));
             }
             return View(conta);
