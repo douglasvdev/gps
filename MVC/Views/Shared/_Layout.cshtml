@@ -6,6 +6,10 @@
     <title>@ViewData["Title"] - MVC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> @*framework para ícone*@
+    <link href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet" /> @*Script para indice e paginação de tabela -> 1 de 4*@
+    <link href="~/css/alertify.min.css" rel="stylesheet"/>
+    <link href="~/css/themes/default.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -47,6 +51,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script> @*Script para indice e paginação de tabela -> 2 de 4*@
+    <script src="~/js/alertify.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

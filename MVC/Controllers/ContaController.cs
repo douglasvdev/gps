@@ -20,10 +20,12 @@ namespace MVC.Controllers
             _context = context;
         }
 
+        #region VISUALIZAR
+
         // GET: Conta
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Contas.ToListAsync());
+            return View(await _context.Contas.Where(c => c.Inativo == null).ToListAsync());
         }
 
         // GET: Conta/Details/5
@@ -43,6 +45,10 @@ namespace MVC.Controllers
 
             return View(conta);
         }
+
+        #endregion
+
+        #region CRIAR
 
         // GET: Conta/Create
         public IActionResult Create()
@@ -65,6 +71,10 @@ namespace MVC.Controllers
             }
             return View(conta);
         }
+
+#endregion
+
+        #region EDITAR
 
         // GET: Conta/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -117,6 +127,10 @@ namespace MVC.Controllers
             return View(conta);
         }
 
+        #endregion
+
+        #region DELETAR (Desativado)
+
         // GET: Conta/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -145,6 +159,52 @@ namespace MVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        #endregion
+
+        #region DELETAR
+
+        // GET: Conta/Edit/5
+        public async Task<IActionResult> Inativar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var conta = await _context.Contas.FindAsync(id);
+            conta.Inativo = DateTime.Now;
+            if (conta == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(conta);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ContaExists(conta.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                TempData["SuccessMessage"] = "Deleted Successfully";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(conta);
+
+        }
+
+        #endregion
 
         private bool ContaExists(int id)
         {

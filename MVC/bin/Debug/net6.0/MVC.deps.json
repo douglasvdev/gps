@@ -9,6 +9,7 @@
       "MVC/1.0.0": {
         "dependencies": {
           "API": "1.0.0",
+          "AlertifyJS": "1.13.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.2",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.2",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2"
@@ -17,6 +18,7 @@
           "MVC.dll": {}
         }
       },
+      "AlertifyJS/1.13.1": {},
       "Castle.Core/4.4.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -2491,6 +2493,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AlertifyJS/1.13.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lJyjcEN++TZP+U1jpNSMEBCI53hsNvexvAEOwo2+W4BjRAq81ElX0cRCgbfHPMKGauvXVPvlo6aAio4tJumy7w==",
+      "path": "alertifyjs/1.13.1",
+      "hashPath": "alertifyjs.1.13.1.nupkg.sha512"
     },
     "Castle.Core/4.4.1": {
       "type": "package",
