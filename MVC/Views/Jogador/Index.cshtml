@@ -1,0 +1,90 @@
+﻿@model IEnumerable<API.Models.Jogador>
+
+@{
+    ViewData["Title"] = "Jogadores";
+}
+
+<h1>Jogadores</h1>
+<br />
+
+<div class="d-flex justify-content-between">
+    <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
+    <a target="_blank" href="http://localhost:5172/api/jogadores" class="btn" data-toggle="tooltip" data-html="true" title="API de Contas">
+        <i class="fa fa-plug"></i> <b>API</b>
+    </a>
+</div>
+<hr />
+
+<table id="tabelaIndex" class="table table-responsive-sm table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mensalista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeJogador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObsJogador)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Inativo)
+            </th>*@
+            <th class="d-flex justify-content-center">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mensalista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeJogador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObsJogador)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Inativo)
+            </td>*@
+            <td class="d-flex justify-content-center">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                    <i class="fa fa-pencil"></i> Editar
+                </a> | 
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                    <i class="fa fa-info"></i> Detalhes
+                </a> | 
+                <a onclick="Inativar(@item.Id)" class="btn btn-sm btn-default">
+                        <i class="fa fa-trash"></i> Excluir
+                </a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function(){
+            $('#tabelaIndex').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+
+        $(function(){
+            var successMessage = '@TempData["MsgSucesso"]'
+            if(successMessage != '')
+                alertify.success(successMessage);
+        });  /*Função para receber valor de MsgSucesso da Controller e tratar para Alertify*/
+
+        function Inativar(id) {
+            alertify.confirm('Exclusão de Jogador', 'Confirmar exclusão ?',function(){
+                window.location.href = '@Url.Action("Inativar","JOgador")/'+id;
+            },null );
+        } /*Função para Modal de confirmação de exclusão */
+    </script>
+}
