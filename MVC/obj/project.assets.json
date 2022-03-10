@@ -2,9 +2,6 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "AlertifyJS/1.13.1": {
-        "type": "package"
-      },
       "Castle.Core/4.4.1": {
         "type": "package",
         "dependencies": {
@@ -3427,35 +3424,6 @@
     }
   },
   "libraries": {
-    "AlertifyJS/1.13.1": {
-      "sha512": "lJyjcEN++TZP+U1jpNSMEBCI53hsNvexvAEOwo2+W4BjRAq81ElX0cRCgbfHPMKGauvXVPvlo6aAio4tJumy7w==",
-      "type": "package",
-      "path": "alertifyjs/1.13.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "alertifyjs.1.13.1.nupkg.sha512",
-        "alertifyjs.nuspec",
-        "content/Content/alertifyjs/alertify.css",
-        "content/Content/alertifyjs/alertify.min.css",
-        "content/Content/alertifyjs/alertify.rtl.css",
-        "content/Content/alertifyjs/alertify.rtl.min.css",
-        "content/Content/alertifyjs/themes/bootstrap.css",
-        "content/Content/alertifyjs/themes/bootstrap.min.css",
-        "content/Content/alertifyjs/themes/bootstrap.rtl.css",
-        "content/Content/alertifyjs/themes/bootstrap.rtl.min.css",
-        "content/Content/alertifyjs/themes/default.css",
-        "content/Content/alertifyjs/themes/default.min.css",
-        "content/Content/alertifyjs/themes/default.rtl.css",
-        "content/Content/alertifyjs/themes/default.rtl.min.css",
-        "content/Content/alertifyjs/themes/semantic.css",
-        "content/Content/alertifyjs/themes/semantic.min.css",
-        "content/Content/alertifyjs/themes/semantic.rtl.css",
-        "content/Content/alertifyjs/themes/semantic.rtl.min.css",
-        "content/Scripts/alertify.js",
-        "content/Scripts/alertify.min.js"
-      ]
-    },
     "Castle.Core/4.4.1": {
       "sha512": "zanbjWC0Y05gbx4eGXkzVycOQqVOFVeCjVsDSyuao9P4mtN1w3WxxTo193NGC7j3o2u3AJRswaoC6hEbnGACnQ==",
       "type": "package",
@@ -10731,7 +10699,6 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "API >= 1.0.0",
-      "AlertifyJS >= 1.13.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.2"
@@ -10780,10 +10747,6 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-          "AlertifyJS": {
-            "target": "Package",
-            "version": "[1.13.1, )"
-          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[6.0.2, )"

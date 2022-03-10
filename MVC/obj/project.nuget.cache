@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "WUuajJHqi+a4RNooVmFyV0puf/x+AWOGQvMRtq/5N7g9XIDZJXirJcAJKwEb30iK3ciMDKCbHUBH+MVwnHoFiQ==",
+  "dgSpecHash": "9d+X1ZYvU6c0o3BFowY266A/WOdGMu9pbsBDyd35mgl5Msrlg8KfXVZ1Dy3RNEnEDR+lQ9hema3Cve/lLgF4HQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\a852889\\source\\repos\\GPS\\MVC\\MVC.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\a852889\\.nuget\\packages\\alertifyjs\\1.13.1\\alertifyjs.1.13.1.nupkg.sha512",
     "C:\\Users\\a852889\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\a852889\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\a852889\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

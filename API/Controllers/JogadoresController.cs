@@ -1,16 +1,13 @@
 ﻿using API.Data;
 using API.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-//using System.Data.Entity;
-using Microsoft.EntityFrameworkCore; // Usando System.Data.Entity dava -> The source IQueryable doesn't implement IDbAsyncEnumerable<API.Models.Conta>
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    //[Route("api/[controller]")]
     [Route("api")]
     [ApiController]
-    public class ContasController : ControllerBase
+    public class JogadoresController : Controller
     {
         #region API - Listar
         /// <summary>
@@ -19,38 +16,38 @@ namespace API.Controllers
         /// <param name="contexto"></param>
         /// <returns>Teste</returns>
         [HttpGet]
-        [Route("contas")]
+        [Route("jogadores")] //http://localhost:5172/api/jogadores
         public async Task<IActionResult> getAllAsync([FromServices] Contexto contexto)
         {
-            var contas = await contexto.Contas.AsNoTracking().ToListAsync();
-            return contas == null ? NotFound() : Ok(contas);
+            var jogadores = await contexto.Jogadores.AsNoTracking().ToListAsync();
+            return jogadores == null ? NotFound() : Ok(jogadores);
         }
 
         #endregion
 
         #region API - Unico
         [HttpGet]
-        [Route("conta/{id}")]
+        [Route("jogador/{id}")]
         public async Task<IActionResult> getByIdAsyn(
             [FromServices] Contexto contexto,
             [FromRoute] int id
             )
         {
-            var conta = await contexto
-                .Contas.AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Id == id);
+            var jogador = await contexto
+                .Jogadores.AsNoTracking()
+                .FirstOrDefaultAsync(j => j.Id == id);
 
-            return conta == null ? NotFound() : Ok(conta);
+            return jogador == null ? NotFound() : Ok(jogador);
         }
 
         #endregion
 
         #region API - Inserir
         [HttpPost]
-        [Route("conta")]
+        [Route("jogador")]
         public async Task<IActionResult> PostAsync(
             [FromServices] Contexto contexto,
-            [FromBody] Conta conta
+            [FromBody] Jogador jogador
             )
         {
             if (!ModelState.IsValid)
@@ -60,9 +57,9 @@ namespace API.Controllers
 
             try
             {
-                await contexto.Contas.AddAsync(conta);
+                await contexto.Jogadores.AddAsync(jogador);
                 await contexto.SaveChangesAsync();
-                return Created($"api/conta/{conta.Id}", conta);
+                return Created($"api/jogador/{jogador.Id}", jogador);
             }
             catch (Exception ex)
             {
@@ -75,10 +72,10 @@ namespace API.Controllers
 
         #region API - Editar
         [HttpPut]
-        [Route("conta/{id}")]
+        [Route("jogador/{id}")]
         public async Task<IActionResult> PutAsync(
             [FromServices] Contexto contexto,
-            [FromBody] Conta conta,
+            [FromBody] Jogador jogador,
             [FromRoute] int id
             )
         {
@@ -87,23 +84,23 @@ namespace API.Controllers
                 return BadRequest();
             }
 
-            var c = await contexto.Contas
-                .FirstOrDefaultAsync(c => c.Id == id);
-            if (c == null)
+            var j = await contexto.Jogadores
+                .FirstOrDefaultAsync(j => j.Id == id);
+            if (j == null)
             {
                 return NotFound("Conta não encontrada");
             }
 
             try
             {
-                c.NomeConta = conta.NomeConta;
-                c.Tipo = conta.Tipo;
-                c.ObsConta = conta.ObsConta;
-                c.Inativo = conta.Inativo;
+                j.NomeJogador = j.NomeJogador;
+                j.Mensalista = j.Mensalista;
+                j.ObsJogador = j.ObsJogador;
+                j.Inativo = j.Inativo;
 
-                contexto.Contas.Update(c);
+                contexto.Jogadores.Update(j);
                 await contexto.SaveChangesAsync();
-                return Ok(c);
+                return Ok(j);
             }
             catch (Exception ex)
             {
@@ -116,25 +113,25 @@ namespace API.Controllers
 
         #region API - Excluir
         [HttpDelete]
-        [Route("conta/{id}")]
+        [Route("jogador/{id}")]
         public async Task<IActionResult> DeleteAsync(
             [FromServices] Contexto contexto,
             [FromRoute] int id
             )
         {
-            var c = await contexto.Contas.FirstOrDefaultAsync(c => c.Id == id);
+            var j = await contexto.Jogadores.FirstOrDefaultAsync(j => j.Id == id);
 
-            if (c == null)
+            if (j == null)
             {
                 return BadRequest("Conta não encontrada!");
             }
 
             try
             {
-                contexto.Contas.Remove(c);
+                contexto.Jogadores.Remove(j);
                 await contexto.SaveChangesAsync();
 
-                return Ok(c);
+                return Ok(j);
             }
             catch (Exception ex)
             {
