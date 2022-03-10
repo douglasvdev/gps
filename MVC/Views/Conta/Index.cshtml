@@ -15,14 +15,14 @@
 </div>
 <hr />
 
-<table id="tabelaIndex" class="table table-sm table-striped table-hover">
+<table id="tabelaIndex" class="table table-responsive-sm table-striped table-hover">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NomeConta)
+                @Html.DisplayNameFor(model => model.Tipo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
+                @Html.DisplayNameFor(model => model.NomeConta)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ObsConta)
@@ -37,10 +37,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.NomeConta)
+                @Html.DisplayFor(modelItem => item.Tipo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
+                @Html.DisplayFor(modelItem => item.NomeConta)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ObsConta)
@@ -49,18 +49,18 @@
                 @Html.DisplayFor(modelItem => item.Inativo)
             </td>*@
             <td class="d-flex justify-content-center">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa fa-pencil"></i> Editar
-                    </a> | 
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa fa-info"></i> Detalhes
-                    </a> | 
-                    @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa fa-trash"></i> Excluir
-                    </a>*@
-                    <a onclick="Inativar(@item.Id)" class="btn btn-sm btn-default">
-                        <i class="fa fa-trash"></i> Excluir
-                    </a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                    <i class="fa fa-pencil"></i> Editar
+                </a> | 
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                    <i class="fa fa-info"></i> Detalhes
+                </a> | 
+                <a onclick="Inativar(@item.Id)" class="btn btn-sm btn-default">
+                    <i class="fa fa-trash"></i> Excluir
+                </a>
+                @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                    <i class="fa fa-trash"></i> Excluir
+                </a>*@
             </td>
         </tr>
 }
@@ -84,7 +84,7 @@
         });  /*Função para receber valor de MsgSucesso da Controller e tratar para Alertify*/
 
         function Inativar(id) {
-            alertify.confirm('Lista de Contas', 'Confirmar exclusão ?',function(){
+            alertify.confirm('Exclusão de Conta', 'Confirmar exclusão ?',function(){
                 window.location.href = '@Url.Action("Inativar","Conta")/'+id;
             },null );
         } /*Função para Modal de confirmação de exclusão */
