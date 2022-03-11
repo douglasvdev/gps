@@ -33,12 +33,12 @@ namespace API.Models
 
         [Required(ErrorMessage = "Obrigatório para definir mês")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] //Verificar forma de exibir data formato brasileiro mas passar em formato USA para Edit
         [Display(Name = "Data Previsão")]
         public DateTime DtPrevisao { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data Baixa")]
         public DateTime? DtBaixa { get; set; }
 
