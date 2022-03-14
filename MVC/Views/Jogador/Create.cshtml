@@ -13,18 +13,31 @@
     <div class="card border-secondary row">
         <div class="card-header">Incluir</div>
         <div class="card-body text-secondary">
-            <form asp-action="Create">
+            <form asp-action="Create" autocomplete="off">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="NomeJogador" class="control-label"></label>
+                    <div>
+                        <label asp-for="NomeJogador" class="control-label"></label>
+                        <label style="color:brown"> *</label>
+                    </div>
                     <input asp-for="NomeJogador" class="form-control" />
                     <span asp-validation-for="NomeJogador" class="text-danger"></span>
                 </div>
+                <br />
                 <div class="form-group">
-                    <label asp-for="Mensalista" class="control-label"></label>
-                    <input asp-for="Mensalista" class="form-control" />
+                    <div>
+                        <label asp-for="Mensalista" class="control-label"></label>
+                        <label style="color:brown"> *</label>
+                    </div>
+                    @*<input asp-for="Mensalista" class="form-control upper" />*@
+                    <select asp-for="Mensalista" class ="form-control" asp-items="ViewBag.ContaId">
+                        <option>N</option>
+                        <option>S</option>
+                        <option>E</option>
+                    </select>
                     <span asp-validation-for="Mensalista" class="text-danger"></span>
                 </div>
+                <br />
                 <div class="form-group">
                     <label asp-for="ObsJogador" class="control-label"></label>
                     <input asp-for="ObsJogador" class="form-control" />

@@ -19,7 +19,7 @@ namespace API.Controllers
         [Route("lancamentos")]
         public async Task<IActionResult> getAllAsync([FromServices] Contexto contexto)
         {
-            var lancamentos = await contexto.Lancamentos.AsNoTracking().ToListAsync();
+            var lancamentos = await contexto.Lancamentos.Include(c => c.Contas).Include(j => j.Jogadores).AsNoTracking().ToListAsync();
             return lancamentos == null ? NotFound() : Ok(lancamentos);
         }
 
@@ -34,7 +34,7 @@ namespace API.Controllers
             )
         {
             var lancamento = await contexto
-                .Lancamentos.AsNoTracking()
+                .Lancamentos.Include(c => c.Contas).Include(j => j.Jogadores).AsNoTracking()
                 .FirstOrDefaultAsync(l => l.Id == id);
 
             return lancamento == null ? NotFound() : Ok(lancamento);

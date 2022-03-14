@@ -88,15 +88,15 @@ namespace API.Controllers
                 .FirstOrDefaultAsync(j => j.Id == id);
             if (j == null)
             {
-                return NotFound("Conta não encontrada");
+                return NotFound("Jogador não encontrado");
             }
 
             try
             {
-                j.NomeJogador = j.NomeJogador;
-                j.Mensalista = j.Mensalista;
-                j.ObsJogador = j.ObsJogador;
-                j.Inativo = j.Inativo;
+                j.NomeJogador = jogador.NomeJogador;
+                j.Mensalista = jogador.Mensalista;
+                j.ObsJogador = jogador.ObsJogador;
+                j.Inativo = jogador.Inativo;
 
                 contexto.Jogadores.Update(j);
                 await contexto.SaveChangesAsync();

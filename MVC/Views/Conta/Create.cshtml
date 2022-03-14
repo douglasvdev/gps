@@ -13,18 +13,30 @@
     <div class="card border-secondary row">
         <div class="card-header">Incluir</div>
         <div class="card-body text-secondary">
-            <form asp-action="Create">
+            <form asp-action="Create" autocomplete="off">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div> @*Pesquisar de onde vem esta validação*@
                 <div class="form-group">
-                    <label asp-for="NomeConta" class="control-label"></label>
+                    <div>
+                        <label asp-for="NomeConta" class="control-label"></label>
+                        <label style="color:brown"> *</label>
+                    </div>
                     <input asp-for="NomeConta" class="form-control" />
                     <span asp-validation-for="NomeConta" class="text-danger"></span>
                 </div>
+                <br />
                 <div class="form-group">
-                    <label asp-for="Tipo" class="control-label"></label>
-                    <input asp-for="Tipo" class="form-control" />
+                    <div>
+                        <label asp-for="Tipo" class="control-label"></label>
+                        <label style="color:brown"> *</label>
+                    </div>
+                    @*<input asp-for="Tipo" class="form-control upper" />*@
+                    <select asp-for="Tipo" class ="form-control" asp-items="ViewBag.ContaId">
+                        <option>S</option>
+                        <option>E</option>
+                    </select>
                     <span asp-validation-for="Tipo" class="text-danger"></span>
                 </div>
+                <br />
                 <div class="form-group">
                     <label asp-for="ObsConta" class="control-label"></label>
                     <input asp-for="ObsConta" class="form-control" />
