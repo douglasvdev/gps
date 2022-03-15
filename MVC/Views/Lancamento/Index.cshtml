@@ -4,11 +4,44 @@
     ViewData["Title"] = "Lançamentos";
 }
 
-<h1>Lançamentos</h1>
+<h1>Lançamentos - <a>@ViewBag.Mes/@ViewBag.Ano</a></h1>
 <br />
 
 <div class="d-flex justify-content-between">
     <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
+    @using (Html.BeginForm("Index", "lancamento", FormMethod.Get))
+    {
+        <div class="containerForm">
+            <div class="input-group">
+                <select class="form-control" id="mes" name="mes">
+                    <option disabled selected>Mes</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+                <select class="form-control" id="ano" name="ano">
+                    <option disabled selected>Ano</option>
+                    <option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                </div>
+            </div>
+        </div>
+    }
     <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
         <i class="fa fa-plug"></i> <b> API</b>
     </a>

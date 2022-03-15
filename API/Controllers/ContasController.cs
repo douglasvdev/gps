@@ -114,8 +114,8 @@ namespace API.Controllers
 
         #endregion
 
-        #region API - Excluir
-        [HttpDelete]
+        #region API - Excluir (Desativado)
+        /*[HttpDelete]
         [Route("conta/{id}")]
         public async Task<IActionResult> DeleteAsync(
             [FromServices] Contexto contexto,
@@ -132,6 +132,38 @@ namespace API.Controllers
             try
             {
                 contexto.Contas.Remove(c);
+                await contexto.SaveChangesAsync();
+
+                return Ok(c);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }*/
+        #endregion
+
+        #region API - Excluir
+        [HttpDelete]
+        [Route("conta/{id}")]
+        public async Task<IActionResult> InativarAsync(
+            [FromServices] Contexto contexto,
+            [FromRoute] int id
+            )
+        {
+            var c = await contexto.Contas.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (c == null)
+            {
+                return BadRequest("Conta não encontrada!");
+            }
+
+            c.Inativo = DateTime.Now;
+
+            try
+            {
+                contexto.Contas.Update(c);
                 await contexto.SaveChangesAsync();
 
                 return Ok(c);

@@ -25,9 +25,26 @@ namespace MVC.Controllers
         #region VISUALIZAR
 
         // GET: Lancamento
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? mes, string? ano)
         {
-            var contexto = _context.Lancamentos.Include(l => l.Contas).Include(l => l.Jogadores).Where(l => l.Inativo == null);
+
+            if (mes == null)
+            {
+                mes = Convert.ToString(DateTime.Now.Month);
+            }
+
+            if (ano == null)
+            {
+                ano = Convert.ToString(DateTime.Now.Year);
+            }
+
+            ViewBag.Mes = mes;
+            ViewBag.Ano = ano;
+
+            var contexto = _context.Lancamentos.Include(l => l.Contas).Include(l => l.Jogadores)
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
             return View(await contexto.ToListAsync());
         }
 

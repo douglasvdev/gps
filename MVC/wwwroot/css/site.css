@@ -17,6 +17,10 @@ body {
   margin-bottom: 60px;
 }
 
-.upper{
+/*.containerForm {
+    max-width: 20%;
+}*/
+
+.upper {
     text-transform: uppercase;
 }
