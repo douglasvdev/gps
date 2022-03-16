@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewData["Title"] = "Resumo";
+}
+
+<h1 style="text-align:center">Resumo</h1>
+<h2 style="text-align:center"><a>@ViewBag.Mes/@ViewBag.Ano</a></h2>
+<br />
+
+<div class="d-flex justify-content-between">
+    <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
+    @using (Html.BeginForm("Resumo", "lancamento", FormMethod.Get))
+    {
+        <div class="containerForm">
+            <div class="input-group">
+                <select class="form-control" id="mes" name="mes">
+                    <option disabled selected>Mes</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                </select>
+                <select asp-items="ViewBag.SaldoTipo" class="form-control" id="ano" name="ano">
+                    <option disabled selected>Ano</option>
+                    @*<option>2019</option>
+                    <option>2020</option>
+                    <option>2021</option>
+                    <option>2022</option>
+                    <option>2023</option>*@
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                </div>
+            </div>
+        </div>
+    }
+    <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
+        <i class="fa fa-plug"></i> <b> API</b>
+    </a>
+</div>
+<hr />
+
+<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                Tipo
+            </th>
+            <th>
+                Valor
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-secondary">
+            <td colspan="2">Geral</td>
+        </tr>
+        <tr>
+            <td class="tableReceita">
+                Receita
+            </td>
+            <td class="tableReceita">
+                @ViewBag.GeralReceita
+            </td>
+        </tr>
+        <tr>
+            <td class="tableDespesa">
+                Despesa
+            </td>
+            <td class="tableDespesa">
+                @ViewBag.GeralDespesa
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Saldo
+            </td>
+            <td>
+                @ViewBag.GeralSaldo
+            </td>
+        </tr>
+
+        <tr><td></td><td></td></tr>
+
+        <tr class="table-secondary">
+            <td colspan="2">Geral Aberto</td>
+        </tr>
+        <tr>
+            <td class="tableReceita">
+                Receita
+            </td>
+            <td class="tableReceita">
+                @ViewBag.GeralReceitaAberto
+            </td>
+        </tr>
+        <tr>
+            <td class="tableDespesa">
+                Despesa
+            </td>
+            <td class="tableDespesa">
+                @ViewBag.GeralDespesaAberto
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Saldo
+            </td>
+            <td>
+                @ViewBag.GeralSaldoAberto
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h5>
+    <a>
+        @ViewBag.SaldoTipo;
+
+    </a>
+
+</h5>

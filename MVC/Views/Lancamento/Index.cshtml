@@ -4,7 +4,8 @@
     ViewData["Title"] = "Lançamentos";
 }
 
-<h1>Lançamentos - <a>@ViewBag.Mes/@ViewBag.Ano</a></h1>
+<h1 style="text-align:center">Lançamentos</h1>
+<h2 style="text-align:center"><a>@ViewBag.Mes/@ViewBag.Ano</a></h2>
 <br />
 
 <div class="d-flex justify-content-between">
@@ -28,13 +29,13 @@
                     <option>11</option>
                     <option>12</option>
                 </select>
-                <select class="form-control" id="ano" name="ano">
+                <select asp-items="ViewBag.ApenasAno" class="form-control" id="ano" name="ano">
                     <option disabled selected>Ano</option>
-                    <option>2019</option>
+                    @*<option>2019</option>
                     <option>2020</option>
                     <option>2021</option>
                     <option>2022</option>
-                    <option>2023</option>
+                    <option>2023</option>*@
                 </select>
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Listar</button>

@@ -21,6 +21,18 @@ body {
     max-width: 20%;
 }*/
 
+.table {
+    text-align: center;
+}
+
+.tableReceita {
+    color: darkgreen
+}
+
+.tableDespesa {
+    color: darkred;
+}
+
 .upper {
     text-transform: uppercase;
 }
