@@ -124,7 +124,7 @@ namespace MVC.Controllers
                 .Where(l => l.Inativo == null)
                 .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
                 .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Sum(l => l.Valor); ;
+                .Sum(l => l.Valor);
 
             ViewBag.GeralSaldo = contextoSaldo;
 
@@ -168,6 +168,18 @@ namespace MVC.Controllers
             ViewBag.GeralSaldoAberto = contextoSaldoAberto;
 
             //Tipo Saldo
+
+            var contextoTipoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtBaixa == null)
+                .GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) });
+            ViewData["SaldoTipo"] = new SelectList(contextoTipoSaldo, "Key", "Key");
+            ViewData["SaldoTipoValor"] = new SelectList(contextoTipoSaldo, "Key", "Soma");
+            //ViewData["ListaTipo"] = new contextoTipoSaldo;
+
+
             /*ViewData["SaldoTipo"] = new SelectList(_context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Inativo == null)
                 .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))

@@ -10701,7 +10701,8 @@
       "API >= 1.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.2",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.2"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.2",
+      "System.Collections >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -10760,6 +10761,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.2, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

@@ -4,8 +4,8 @@
     ViewData["Title"] = "Lançamentos";
 }
 
-<h1 style="text-align:center">Lançamentos</h1>
-<h2 style="text-align:center"><a>@ViewBag.Mes/@ViewBag.Ano</a></h2>
+<h1 style="text-align:center">Financeiro</h1>
+<h3 style="text-align:center">Lançamentos - <a>@ViewBag.Mes/@ViewBag.Ano</a></h3>
 <br />
 
 <div class="d-flex justify-content-between">
@@ -43,9 +43,10 @@
             </div>
         </div>
     }
-    <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
+    <a asp-action="Resumo" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
+    @*<a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
         <i class="fa fa-plug"></i> <b> API</b>
-    </a>
+    </a>*@
 </div>
 <hr />
 

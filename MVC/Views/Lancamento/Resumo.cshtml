@@ -3,12 +3,13 @@
     ViewData["Title"] = "Resumo";
 }
 
-<h1 style="text-align:center">Resumo</h1>
-<h2 style="text-align:center"><a>@ViewBag.Mes/@ViewBag.Ano</a></h2>
+<h1 style="text-align:center">Financeiro</h1>
+<h3 style="text-align:center">Resumo - <a>@ViewBag.Mes/@ViewBag.Ano</a></h3>
 <br />
 
 <div class="d-flex justify-content-between">
-    <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
+    @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
+    <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list"></i> Lançamentos</a>
     @using (Html.BeginForm("Resumo", "lancamento", FormMethod.Get))
     {
         <div class="containerForm">
@@ -28,7 +29,7 @@
                     <option>11</option>
                     <option>12</option>
                 </select>
-                <select asp-items="ViewBag.SaldoTipo" class="form-control" id="ano" name="ano">
+                <select asp-items="ViewBag.ApenasAno" class="form-control" id="ano" name="ano">
                     <option disabled selected>Ano</option>
                     @*<option>2019</option>
                     <option>2020</option>
@@ -41,7 +42,7 @@
                 </div>
             </div>
         </div>
-    }
+    }    
     <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
         <i class="fa fa-plug"></i> <b> API</b>
     </a>
@@ -127,3 +128,39 @@
     </a>
 
 </h5>
+
+<br />
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Conta
+            </th>
+            <th>
+                Valor
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.SaldoTipo) {
+            <tr>
+                <td>
+                    @ViewData["SaldoTipo"]
+                </td>
+                <td>
+                    @ViewBag.SaldoTipoValor
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<select asp-items="ViewBag.SaldoTipo" class="form-control" id="ano" name="ano">
+    <option disabled selected>Tipo</option>
+</select>
+<select asp-items="ViewBag.SaldoTipoValor" class="form-control" id="ano" name="ano">
+    <option disabled selected>Soma</option>
+</select>
