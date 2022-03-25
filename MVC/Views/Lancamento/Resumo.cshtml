@@ -121,9 +121,9 @@
     </tbody>
 </table>
 
-<h5>
+@*<h5>
     <a>
-        @ViewBag.SaldoTipo;
+        @ViewBag.ListaTipo;
 
     </a>
 
@@ -146,10 +146,10 @@
         @foreach (var item in ViewBag.SaldoTipo) {
             <tr>
                 <td>
-                    @ViewData["SaldoTipo"]
+                    @ViewData["ListaTipo"]
                 </td>
                 <td>
-                    @ViewBag.SaldoTipoValor
+                    @ViewBag.ListaTipo
                 </td>
             </tr>
         }
@@ -163,4 +163,4 @@
 </select>
 <select asp-items="ViewBag.SaldoTipoValor" class="form-control" id="ano" name="ano">
     <option disabled selected>Soma</option>
-</select>
+</select>*@

@@ -15,6 +15,7 @@ C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\EntityFramework.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\Humanizer.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\MessagePack.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\a852889\source\repos\GPS\MVC\bin\Debug\net6.0\Microsoft.Build.Locator.dll

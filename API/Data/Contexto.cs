@@ -10,6 +10,9 @@ namespace API.Data
         public DbSet<Jogador> Jogadores { get; set; }
         public DbSet<Conta> Contas { get; set; }
         public DbSet<Lancamento> Lancamentos { get; set; }
+        //public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Parametro> Parametros { get; set; }
+        public DbSet<Scout> Scouts { get; set; }
 
         public Contexto()
         {

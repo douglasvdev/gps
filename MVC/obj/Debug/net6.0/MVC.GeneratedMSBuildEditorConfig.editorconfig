@@ -87,6 +87,34 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFuY2FtZW50b1xSZXN1bW8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Parametro/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyYW1ldHJvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Parametro/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyYW1ldHJvXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Parametro/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyYW1ldHJvXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Parametro/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyYW1ldHJvXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Parametro/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyYW1ldHJvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Scout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a852889/source/repos/GPS/MVC/Views/Scout/Tabela.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NvdXRcVGFiZWxhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/a852889/source/repos/GPS/MVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

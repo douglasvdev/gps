@@ -17,7 +17,7 @@ namespace API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -120,6 +120,76 @@ namespace API.Migrations
                     b.ToTable("Lancamentos");
                 });
 
+            modelBuilder.Entity("API.Models.Parametro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CodParametro")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("DescParametro")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<DateTime?>("Inativo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Ponto")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Parametros");
+                });
+
+            modelBuilder.Entity("API.Models.Scout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("Assistencia")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DtPartida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("Gol")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Inativo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("JogadorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ObsScout")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ParametroId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Presente")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JogadorId");
+
+                    b.HasIndex("ParametroId");
+
+                    b.ToTable("Scouts");
+                });
+
             modelBuilder.Entity("API.Models.Lancamento", b =>
                 {
                     b.HasOne("API.Models.Conta", "Contas")
@@ -137,6 +207,25 @@ namespace API.Migrations
                     b.Navigation("Contas");
 
                     b.Navigation("Jogadores");
+                });
+
+            modelBuilder.Entity("API.Models.Scout", b =>
+                {
+                    b.HasOne("API.Models.Jogador", "Jogadores")
+                        .WithMany()
+                        .HasForeignKey("JogadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Parametro", "Parametros")
+                        .WithMany()
+                        .HasForeignKey("ParametroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Jogadores");
+
+                    b.Navigation("Parametros");
                 });
 #pragma warning restore 612, 618
         }

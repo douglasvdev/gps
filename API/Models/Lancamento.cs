@@ -23,6 +23,7 @@ namespace API.Models
         [Required(ErrorMessage = "Obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "Valor deve ser maior que 0")]
         [DataType(DataType.Currency)]
+        //[DisplayFormat(DataFormatString = "{0:c}")]
         [Column(TypeName = "money")]
         [ValidateNever]
         public decimal Valor { get; set; }

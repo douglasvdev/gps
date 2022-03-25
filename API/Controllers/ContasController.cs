@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 //using System.Data.Entity;
@@ -20,6 +21,8 @@ namespace API.Controllers
         /// <returns>Teste</returns>
         [HttpGet]
         [Route("contas")]
+        //[Authorize(Roles = "manager")] //Verificar porque não está autorizando como Manager
+        [Authorize]
         public async Task<IActionResult> getAllAsync([FromServices] Contexto contexto)
         {
             var contas = await contexto.Contas.AsNoTracking().ToListAsync();

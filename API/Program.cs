@@ -1,4 +1,7 @@
 using API.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +27,35 @@ builder.Services.AddSwaggerGen(c =>
         });
 });
 
-builder.Services.AddDbContext<Contexto>();
+//var tokenKey = "aqui minha chave privada";  //*******************************************
+var key = Encoding.ASCII.GetBytes(Settings.Chave);  //*******************************************
+
+builder.Services.AddAuthentication   //*******************************************
+    (
+        x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }
+    ).AddJwtBearer
+    (
+        x =>
+        {
+            x.RequireHttpsMetadata = false;
+            x.SaveToken = true;
+            x.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        }
+    );   //*******************************************
+
+//builder.Services.AddSingleton<JWTAuthenticationManager>(new JWTAuthenticationManager(tokenKey));  //*******************************************
+
+builder.Services.AddDbContext<Contexto>(); //Libera a injeção de dependência
 
 var app = builder.Build();
 
@@ -39,6 +70,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication(); //******************************************* Lembrar da ordem. Primeiro autenticação de pois autorização
 
 app.UseAuthorization();
 
