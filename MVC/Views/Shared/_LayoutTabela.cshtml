@@ -1,0 +1,21 @@
+﻿    <script>
+        $(document).ready(function(){
+            $('#tabelaIndex').DataTable( {
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+
+        $(function(){
+            var successMessage = '@TempData["MsgSucesso"]'
+            if(successMessage != '')
+                alertify.success(successMessage);
+        });  /*Função para receber valor de MsgSucesso da Controller e tratar para Alertify*/
+
+        function Inativar(id) {
+            alertify.confirm('Exclusão de Conta', 'Confirmar exclusão ?',function(){
+                window.location.href = '@Url.Action("Inativar","Conta")/'+id;
+            },null );
+        } /*Função para Modal de confirmação de exclusão */
+    </script>

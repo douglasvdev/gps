@@ -3683,6 +3683,7 @@
           "Microsoft.EntityFrameworkCore": "6.0.3",
           "Microsoft.EntityFrameworkCore.Proxies": "6.0.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.3",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.2",
           "Swashbuckle.AspNetCore": "6.3.0",
           "Swashbuckle.AspNetCore.Swagger": "6.3.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.3.0"

@@ -148,6 +148,50 @@ namespace MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        #region DELETAR
+
+        // GET: Conta/Edit/5
+        public async Task<IActionResult> Inativar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var parametro = await _context.Parametros.FindAsync(id);
+            parametro.Inativo = DateTime.Now;
+            if (parametro == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(parametro);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ParametroExists(parametro.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                TempData["MsgSucesso"] = "Deletado com Sucesso";  //Transportar valor de MsgSucesso para função de alertify
+                return RedirectToAction(nameof(Index));
+            }
+            return View(parametro);
+
+        }
+
+        #endregion
+
         private bool ParametroExists(int id)
         {
             return _context.Parametros.Any(e => e.Id == id);

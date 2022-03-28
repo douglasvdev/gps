@@ -77,7 +77,7 @@ namespace MVC.Controllers
         // GET: Lancamento
         public async Task<IActionResult> Resumo(string? mes, string? ano)
         {
-
+            #region Parametros
             if (mes == null)
             {
                 mes = Convert.ToString(DateTime.Now.Month);
@@ -92,7 +92,9 @@ namespace MVC.Controllers
             ViewBag.Ano = ano;
 
             ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            #endregion
 
+            #region ResumoGeral
             //Resumo Receita Geral
             var contextoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
@@ -113,22 +115,11 @@ namespace MVC.Controllers
 
             //Resumo Saldo Geral
             var contextoSaldo = contextoReceita + contextoDespesa;
-            /*var contextoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Contas.Tipo == "E")
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Sum(l => l.Valor)
-                +
-                _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Contas.Tipo == "S")
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Sum(l => l.Valor);*/
 
             ViewBag.GeralSaldo = contextoSaldo;
+            #endregion
 
+            #region ResumoAberto
             //Resumo Receita Aberto
             var contextoReceitaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
@@ -151,26 +142,13 @@ namespace MVC.Controllers
 
             //Resumo Saldo Aberto
             var contextoSaldoAberto = contextoReceitaAberto + contextoDespesaAberto;
-            /*var contextoSaldoAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Contas.Tipo == "E")
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Where(l => l.DtBaixa == null)
-                .Sum(l => l.Valor)
-                +
-                _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Contas.Tipo == "S")
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Where(l => l.DtBaixa == null)
-                .Sum(l => l.Valor);*/
 
             ViewBag.GeralSaldoAberto = contextoSaldoAberto;
+            #endregion
+
 
             //Tipo Saldo
-
+            //Falta passar Lista para view
             /*var contextoTipoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Inativo == null)
                 .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))

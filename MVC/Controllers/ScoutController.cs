@@ -45,9 +45,24 @@ namespace MVC.Controllers
 
             ViewData["ApenasAno"] = new SelectList(_context.Scouts.Where(l => l.Inativo == null).Select(l => l.DtPartida.Year).Distinct(), "Ano");
 
-            var contexto = _context.Scouts.Include(l => l.Jogadores).Include(l => l.Parametros)
+            /*var contexto = _context.Scouts.Include(l => l.Jogadores).Include(l => l.Parametros)
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPartida.Year == Convert.ToInt32(ano));
+                .Where(l => l.DtPartida.Year == Convert.ToInt32(ano));*/
+
+            var contexto = from sct in _context.Scouts
+                           join jog in _context.Jogadores on sct.JogadorId equals jog.Id
+                           join par in _context.Parametros on sct.ParametroId equals par.Id
+                           group sct by new
+                           {
+                               jog.NomeJogador
+                           } into g
+                           orderby g.Sum(s => s.Gol) descending
+                           select new
+                           {
+                               Nome = g.Key.NomeJogador,
+                               Gols = g.Sum(s => s.Gol)
+                           };
+            ViewData["scout"] = contexto;
             return View(await contexto.ToListAsync());
         }
 

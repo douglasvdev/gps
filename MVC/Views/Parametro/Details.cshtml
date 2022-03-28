@@ -1,42 +1,51 @@
 ﻿@model API.Models.Parametro
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
 }
 
-<h1>Details</h1>
+<h1>Detalhes</h1>
+
+<hr />
+<br />
+
+<div class="d-flex justify-content-center">
+    <div class="card border-secondary row">
+        <div class="card-header">Detalhes</div>
+        <div class="card-body text-secondary">
+            <form>
+                <div class="form-group">
+                    <label asp-for="DescParametro" class="control-label"></label>
+                    <input asp-for="DescParametro" class="form-control" readonly/>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="CodParametro" class="control-label"></label>
+                    <input asp-for="CodParametro" class="form-control" readonly/>
+                </div>                    
+                <br />                
+                <div class="form-group">
+                    <label asp-for="Ponto" class="control-label"></label>
+                    <input asp-for="Ponto" class="form-control" readonly/>
+                    <br />
+                    <div>
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-secondary"><i class="fa fa-pencil"></i> Editar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    @*<div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+</div>
+
+<hr />
+<br />
 
 <div>
-    <h4>Parametro</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DescParametro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DescParametro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CodParametro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CodParametro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ponto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ponto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Inativo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Inativo)
-        </dd>
-    </dl>
+    <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list-ul"></i> Lista</a>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
