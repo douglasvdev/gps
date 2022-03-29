@@ -13,6 +13,8 @@ namespace MVC.Controllers
 {
     public class ParametroController : Controller
     {
+        #region CONTRUTOR
+
         private readonly Contexto _context;
 
         public ParametroController(Contexto context)
@@ -20,10 +22,14 @@ namespace MVC.Controllers
             _context = context;
         }
 
+        #endregion
+
+        #region VISUALIZAR
+
         // GET: Parametro
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Parametros.ToListAsync());
+            return View(await _context.Parametros.Where(p => p.Inativo == null).ToListAsync());
         }
 
         // GET: Parametro/Details/5
@@ -44,6 +50,10 @@ namespace MVC.Controllers
             return View(parametro);
         }
 
+#endregion
+
+        #region CRIAR
+
         // GET: Parametro/Create
         public IActionResult Create()
         {
@@ -60,12 +70,24 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 parametro.CodParametro = parametro.CodParametro.ToUpper();
-                _context.Add(parametro);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.Add(parametro);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    TempData["MsgRegDup"] = "Código já existe!";  //Transportar valor de MsgSucesso para função de alertify
+                    return RedirectToAction(nameof(Create));
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(parametro);
         }
+
+#endregion
+
+        #region EDITAR
 
         // GET: Parametro/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -97,12 +119,12 @@ namespace MVC.Controllers
 
             if (ModelState.IsValid)
             {
+                parametro.CodParametro = parametro.CodParametro.ToUpper();
                 try
                 {
-                    parametro.CodParametro = parametro.CodParametro.ToUpper();
                     _context.Update(parametro);
                     await _context.SaveChangesAsync();
-                }
+                } 
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ParametroExists(parametro.Id))
@@ -114,10 +136,19 @@ namespace MVC.Controllers
                         throw;
                     }
                 }
+                catch (Exception ex)
+                {
+                    TempData["MsgRegDup"] = "Código já existe!";  //Transportar valor de MsgSucesso para função de alertify
+                    return View(parametro);
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(parametro);
         }
+
+#endregion
+
+        #region DELETAR (Descontinuado)
 
         // GET: Parametro/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -147,6 +178,8 @@ namespace MVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        #endregion
 
         #region DELETAR
 
@@ -192,9 +225,13 @@ namespace MVC.Controllers
 
         #endregion
 
+        #region METODOS
+
         private bool ParametroExists(int id)
         {
             return _context.Parametros.Any(e => e.Id == id);
         }
+
+        #endregion
     }
 }

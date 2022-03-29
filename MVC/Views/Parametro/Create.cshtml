@@ -1,10 +1,10 @@
 ﻿@model API.Models.Parametro
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Incluir";
 }
 
-<h1>Create</h1>
+<h1>Parâmetro</h1>
 
 <hr />
 <br />
@@ -28,6 +28,7 @@
                     <div>
                         <label asp-for="CodParametro" class="control-label"></label>
                         <label style="color:brown"> *</label>
+                        @if (TempData["MsgRegDup"] != null){<label style="color:brown"><strong>@TempData["MsgRegDup"]</strong></label>}
                     </div>
                     <input asp-for="CodParametro" class="form-control" />
                     <span asp-validation-for="CodParametro" class="text-danger"></span>
@@ -49,7 +50,7 @@
                 </div>*@
                 <div class="form-group">
                     @*<input type="submit" value="Create" class="btn btn-primary" />*@
-                    <button type="submit" class="btn btn-secondary">
+                    <button type="submit" class="btn btn-secondary" onclick="RegDup">
                         <i class="fa fa-floppy-o"> Salvar</i>
                     </button>
                 </div>
@@ -68,4 +69,3 @@
 @*@section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }*@
-

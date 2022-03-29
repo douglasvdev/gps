@@ -25,5 +25,11 @@ namespace API.Data
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             optionsBuilder.UseLazyLoadingProxies();
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Parametro>().HasIndex(p => p.CodParametro).IsUnique();
+        //}
+
     }
 }

@@ -68,14 +68,14 @@
 </table>
 
 @section Scripts {
-    @*<script>
-        $(document).ready(function(){
-            $('#tabelaIndex').DataTable( {
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
-                }
-            });
-        });
+    <script>
+        //$(document).ready(function(){
+        //    $('#tabelaIndex').DataTable( {
+        //        "language": {
+        //            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+        //        }
+        //    });
+        //}); //Partial View _LayoutTabela
 
         $(function(){
             var successMessage = '@TempData["MsgSucesso"]'
@@ -88,6 +88,6 @@
                 window.location.href = '@Url.Action("Inativar","Conta")/'+id;
             },null );
         } /*Função para Modal de confirmação de exclusão */
-    </script>*@
+    </script>
     @Html.Partial("../Shared/_LayoutTabela")
 }
