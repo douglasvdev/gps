@@ -72,6 +72,134 @@ namespace MVC.Controllers
 
         #endregion
 
+        #region RECEITA
+        public async Task<IActionResult> _Receita(string? mes, string? ano)
+        {
+            #region Parametros
+            if (mes == null)
+            {
+                mes = Convert.ToString(DateTime.Now.Month);
+            }
+
+            if (ano == null)
+            {
+                ano = Convert.ToString(DateTime.Now.Year);
+            }
+
+            ViewBag.Mes = mes;
+            ViewBag.Ano = ano;
+
+            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            #endregion
+
+            #region Receita Geral
+            //Resumo Receita Geral
+            var contextoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "E")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Sum(l => l.Valor);
+            ViewBag.GeralReceita = contextoReceita;
+
+            #endregion
+
+            #region Receita Aberto
+            //Resumo Receita Aberto
+            var contextoReceitaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "E")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtBaixa == null)
+                .Sum(l => l.Valor);
+            ViewBag.GeralReceitaAberto = contextoReceitaAberto;
+
+            #endregion
+
+            #region Grupo Receita
+
+            //Tipo Saldo
+            //Falta passar Lista para view
+            var contextoSaldoGrupoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "E")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
+                //.Where(l => l.DtBaixa == null);
+            /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
+
+            #endregion
+
+            return View(contextoSaldoGrupoReceita);
+        }
+
+        #endregion
+
+        #region DESPESA
+        public async Task<IActionResult> _Despesa(string? mes, string? ano)
+        {
+            #region Parametros
+            if (mes == null)
+            {
+                mes = Convert.ToString(DateTime.Now.Month);
+            }
+
+            if (ano == null)
+            {
+                ano = Convert.ToString(DateTime.Now.Year);
+            }
+
+            ViewBag.Mes = mes;
+            ViewBag.Ano = ano;
+
+            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            #endregion
+
+            #region Despesa Geral
+            //Resumo Receita Geral
+            var contextoDespesa = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "S")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Sum(l => l.Valor);
+            ViewBag.GeralDespesa = contextoDespesa;
+
+            #endregion
+
+            #region Despesa Aberto
+            //Resumo Receita Aberto
+            var contextoDespesaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "S")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtBaixa == null)
+                .Sum(l => l.Valor);
+            ViewBag.GeralDespesaAberto = contextoDespesaAberto;
+
+            #endregion
+
+            #region Grupo Despesa
+
+            //Tipo Saldo
+            //Falta passar Lista para view
+            var contextoSaldoGrupoDespesa = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+                .Where(l => l.Contas.Tipo == "S")
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
+            //.Where(l => l.DtBaixa == null);
+            /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
+
+            #endregion
+
+            return View(contextoSaldoGrupoDespesa);
+        }
+
+        #endregion
+
         #region RESUMO
 
         // GET: Lancamento
@@ -149,49 +277,16 @@ namespace MVC.Controllers
 
             //Tipo Saldo
             //Falta passar Lista para view
-            /*var contextoTipoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Where(l => l.DtBaixa == null)
-                .GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) });
-            ViewData["SaldoTipo"] = new SelectList(contextoTipoSaldo, "Key", "Key");
-            ViewData["SaldoTipoValor"] = new SelectList(contextoTipoSaldo, "Key", "Soma");
-            ViewData["ListaTipo"] = contextoTipoSaldo;*/
-
-
-
-
-
-
-
-
-
-
-            /*ViewData["SaldoTipo"] = new SelectList(_context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
-                .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Where(l => l.DtBaixa == null)
-                //.Select(l => l.Valor)
-                .GroupBy(l => l.ContaId)
-                .Select(g => new {Conta = g.Key, count = g.Count()})
-                //.Sum(l => l.Valor)
-                );*/
-
-            /*var contextoTipos = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
+            var contextoTipoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Inativo == null)
                 .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
                 .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
                 .Where(l => l.DtBaixa == null);
+                /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
 
-            var saldoTipo = from tipo in contextoTipos
-                            group tipo by tipo.Contas.Tipo into tiposAgrupados
-                            select tiposAgrupados;
 
-            ViewData["TesteTipo"] = saldoTipo;*/
 
-            return View();
+            return View(contextoTipoSaldo);
         }
 
         #endregion

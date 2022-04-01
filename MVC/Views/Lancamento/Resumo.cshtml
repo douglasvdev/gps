@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<API.Models.Lancamento>
 @{
     ViewData["Title"] = "Resumo";
 }
@@ -49,7 +49,7 @@
 </div>
 <hr />
 
-<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+@*<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
     <thead class="table-dark">
         <tr>
             <th>
@@ -119,20 +119,12 @@
             </td>
         </tr>
     </tbody>
-</table>
-
-@*<h5>
-    <a>
-        @ViewBag.ListaTipo;
-
-    </a>
-
-</h5>
+</table>*@
 
 <br />
 
-<table>
-    <thead>
+<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+    <thead class="table-dark">
         <tr>
             <th>
                 Conta
@@ -143,24 +135,26 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in ViewBag.SaldoTipo) {
-            <tr>
-                <td>
-                    @ViewData["ListaTipo"]
-                </td>
-                <td>
-                    @ViewBag.ListaTipo
-                </td>
-            </tr>
-        }
+        <partial name="_Receita" />
+        <partial name="_Despesa" />
+        <tr class="table-secondary">
+            <td colspan="2">Saldo</td>
+        </tr>
+        <tr>
+            <td>
+                Saldo Geral
+            </td>
+            <td>
+                @ViewBag.GeralSaldo
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Saldo em Aberto
+            </td>
+            <td>
+                @ViewBag.GeralSaldoAberto
+            </td>
+        </tr>
     </tbody>
 </table>
-
-<br />
-
-<select asp-items="ViewBag.SaldoTipo" class="form-control" id="ano" name="ano">
-    <option disabled selected>Tipo</option>
-</select>
-<select asp-items="ViewBag.SaldoTipoValor" class="form-control" id="ano" name="ano">
-    <option disabled selected>Soma</option>
-</select>*@

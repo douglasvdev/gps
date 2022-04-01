@@ -1,0 +1,33 @@
+﻿@model IEnumerable<API.Models.Lancamento>
+
+
+<tr class="table-secondary">
+    <td class="tableReceita" colspan="2">Receita</td>
+</tr>
+@foreach (var item in Model.Where(l => l.Contas.Tipo == "E").GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }).OrderByDescending(l => l.Soma)) 
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Key)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soma)
+        </td>
+    </tr>
+}
+<tr>
+    <td class="tableReceita">
+        GERAL (Receita)
+    </td>
+    <td class="tableReceita">
+        @ViewBag.GeralReceita
+    </td>
+</tr>
+<tr>
+    <td class="tableReceita">
+        ABERTO (Receita)
+    </td>
+    <td class="tableReceita">
+        @ViewBag.GeralReceitaAberto
+    </td>
+</tr>
