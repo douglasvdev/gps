@@ -1,0 +1,30 @@
+//Inicio Projeto 08/03/2022
+
+/*-------------------------------- API
+    Pacote
+    AspNetCore.Authentication
+    AspNetCore.Authentication.JwtBearer
+    
+    Criei a classe model Usuario, mas ainda nao fiz o migration porque vou usar usuario local por enquanto; - 18/03/2022
+    Criei a classe para UserRepository - para usar os usuários informados nela, e não buscar nno Banco; - 18/03/2022
+    Criei a classe Settings para armazenar a chave; - 18/03/2022
+    
+    Criar classe Resultado (Jogador de A1 a B10)
+    Criar classe Scout (Estrutura do Scout, porque vai para o BD)
+    Controller ResultadoController instanciando Scout. Ex. var partida = Scout.Get(resultado.)
+    * Trabalhar no JSON de Scout;
+* -------------------------------------*/
+
+
+
+
+
+
+
+/*-------------------------------- MVC
+    * Acrescentar campo Time em tabela Scout, que vai receber o Time que jogou em cada partida; 05/04/2022 OK
+    * Passar Mensalista S, E, ou N como parametro; 05/04/2022 OK
+    * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW;
+    * Relatorio de Saldo do Mes (Extrato);
+    * Jquery para formulario dinamico;
+* -------------------------------------*/

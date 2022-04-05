@@ -5,7 +5,7 @@
 }
 
 <h1 style="text-align:center">Scout</h1>
-<h3 style="text-align:center"><a>@ViewBag.Ano</a></h3>
+<h5 style="text-align:center"><a>Mensalista: @ViewBag.Mensalista - @ViewBag.Ano</a></h5>
 <br />
 
 @********************COLOCAR FORM DE MES E ANO EM PARTIAL VIEW*@
@@ -16,9 +16,8 @@
     {
         <div class="containerForm">
             <div class="input-group">
-                <select asp-items="ViewBag.ApenasAno" class="form-control" id="ano" name="ano">
-                    <option disabled selected>Ano</option>
-                </select>
+                <partial name="_Mensalista" />
+                <partial name="_Ano" />
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Listar</button>
                 </div>
@@ -31,8 +30,8 @@
 </div>
 <hr />
 
-<table class="table">
-    <thead>
+<table class="table table-responsive-sm table-striped table-hover">
+    <thead class="table-dark">
         <tr>
             <th>
                 #

@@ -31,6 +31,7 @@ namespace API.Models
         public int? Gol { get; set; }
         public int? Assistencia { get; set; }
         public string? ObsScout { get; set; }
+        public string? Time { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
