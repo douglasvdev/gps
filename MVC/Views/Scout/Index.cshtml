@@ -8,6 +8,7 @@
 <h3 style="text-align:center"><a>@ViewBag.Ano</a></h3>
 <br />
 
+@********************COLOCAR FORM DE MES E ANO EM PARTIAL VIEW*@
 <div class="d-flex justify-content-between">
     @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
     <a asp-action="Tabela" class="btn btn-secondary"><i class="fa fa-futbol-o"></i>  Tabela</a>
@@ -30,11 +31,6 @@
 </div>
 <hr />
 
-@*<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
 <table class="table">
     <thead>
         <tr>
@@ -48,10 +44,19 @@
                 Pontos
             </th>
             <th>
+                Pontos Médias
+            </th>
+            <th>
                 Gols
             </th>
             <th>
+                Gols Média
+            </th>
+            <th>
                 Presenca
+            </th>
+            <th>
+                Falta
             </th>
             <th>
                 Vitoria
@@ -68,9 +73,12 @@
 @foreach (var item in Model.GroupBy(l => l.Jogadores.NomeJogador)
     .Select(l => new { l.Key,
         Rank = 0,
-        Pontos = l.Sum(c => c.Parametros.Ponto + Convert.ToInt32(c.Presente)),
+        Pontos = Convert.ToInt32(l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)),
+        MediaPontos = (l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)) / l.Sum(p => p.Presente),
         Gols = l.Sum(c => c.Gol),
-        Presenca = l.Count(p => p.Presente == true),
+        MediaGols = l.Sum(c => c.Gol) / l.Sum(p => p.Presente),
+        Presenca = Convert.ToInt32(l.Sum(p => p.Presente)),
+        Falta = l.Count(s => s.Parametros.Id == 2),
         Vitoria = l.Count(v => v.Parametros.CodParametro == "V"),
         Empate = l.Count(e => e.Parametros.CodParametro == "E"),
         Derrota = l.Count(d => d.Parametros.CodParametro == "D")
@@ -86,10 +94,19 @@
                 @Html.DisplayFor(modelItem => item.Pontos)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MediaPontos)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Gols)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.MediaGols)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Presenca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Falta)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Vitoria)

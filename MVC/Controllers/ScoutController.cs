@@ -47,7 +47,9 @@ namespace MVC.Controllers
 
             var contexto = _context.Scouts.Include(l => l.Jogadores).Include(l => l.Parametros)
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPartida.Year == Convert.ToInt32(ano));
+                .Where(l => l.DtPartida.Year == Convert.ToInt32(ano))
+                .Where(l => l.Jogadores.Mensalista == "S")
+                .Where(l => l.Presente == 1);
 
             /*var contexto = from sct in _context.Scouts
                            join jog in _context.Jogadores on sct.JogadorId equals jog.Id
@@ -63,6 +65,7 @@ namespace MVC.Controllers
                                Gols = g.Sum(s => s.Gol)
                            };
             ViewData["scout"] = contexto;*/
+            //ValidarMensalistaSemPresenca();
             return View(await contexto.ToListAsync());
         }
 
@@ -228,6 +231,14 @@ namespace MVC.Controllers
 
             #endregion
 
+            //ListaFaltas(listaJogTimeA, listaJogTimeB);
+            /*var contextoFaltas = _context.Jogadores
+                .Where(l => l.Mensalista == "S")
+                .Where(l => !listaJogTimeA.Contains(l.Id) && !listaJogTimeB.Contains(l.Id)).ToList();
+
+            List<Jogador> listarFaltantes = new List<Jogador>();
+            listarFaltantes.AddRange(contextoFaltas);*/
+
             #region Regra de Negocio
 
             if (GolA > GolB)
@@ -239,8 +250,8 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeA[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 3;
+                        scout.Presente = 1;
+                        scout.ParametroId = 3;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeA[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
@@ -252,14 +263,32 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeB[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 4;
+                        scout.Presente = 1;
+                        scout.ParametroId = 4;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeB[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
                         await _context.SaveChangesAsync();
                     }
                 }
+
+                
+                for (int i = 0; i < ListaFaltas(listaJogTimeA, listaJogTimeB).Count; i++)
+                {
+                    if (ListaFaltas(listaJogTimeA, listaJogTimeB)[i].Id != 0)
+                    {
+                        scout.Id = 0;
+                        scout.DtPartida = DtPartida;
+                        scout.JogadorId = ListaFaltas(listaJogTimeA, listaJogTimeB)[i].Id;
+                        scout.Presente = 0;
+                        scout.ParametroId = 2;     //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
+                        scout.Gol = 0;
+                        scout.ObsScout = ObsScout;
+                        _context.Add(scout);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                //ValidarMensalistaSemPresenca();
             } 
             else if (GolA < GolB)
             {
@@ -270,8 +299,8 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeA[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 4;
+                        scout.Presente = 1;
+                        scout.ParametroId = 4;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeA[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
@@ -283,8 +312,8 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeB[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 3;
+                        scout.Presente = 1;
+                        scout.ParametroId = 3;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeB[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
@@ -301,8 +330,8 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeA[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 5;
+                        scout.Presente = 1;
+                        scout.ParametroId = 5;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeA[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
@@ -314,8 +343,8 @@ namespace MVC.Controllers
                         scout.Id = 0;
                         scout.DtPartida = DtPartida;
                         scout.JogadorId = listaJogTimeB[i];
-                        scout.Presente = true;
-                        scout.ParametroId = 5;
+                        scout.Presente = 1;
+                        scout.ParametroId = 5;   //1=>Presenca(P-1)| 2=>Falta(F-0)| 3=>Vitoria(V-3)| 4=>Derrota(D-0)| 5=>Empate(E-1)| 6=>Justificado(J-1)
                         scout.Gol = listaGolTimeB[i];
                         scout.ObsScout = ObsScout;
                         _context.Add(scout);
@@ -332,6 +361,48 @@ namespace MVC.Controllers
 
         #endregion
 
-        
+        #region METODOS
+
+        public List<Jogador> ListaFaltas(List<int> listaPresenteA, List<int> listaPresenteB)
+        {
+            var contextoFaltas = _context.Jogadores
+                .Where(l => l.Inativo == null)
+                .Where(l => l.Mensalista == "S")
+                .Where(l => !listaPresenteA.Contains(l.Id) && !listaPresenteB.Contains(l.Id)).ToList();
+
+            List<Jogador> listarFaltantes = new List<Jogador>();
+            listarFaltantes.AddRange(contextoFaltas);
+            
+            return listarFaltantes;
+        }
+
+        public async void ValidarMensalistaSemPresenca()
+        {
+            var contextoMensalistaSemPresenca = _context.Scouts
+                //.Where(j => j.Jogadores.Inativo == null)
+                .Where(s => s.Jogadores.Mensalista == "S")
+                .Where(s => s.Presente == 1)
+                .Select(s => s.JogadorId)
+                .Distinct().ToList();
+
+
+            var contextoMensalistas = _context.Jogadores
+                .Where(l => !contextoMensalistaSemPresenca.Contains(l.Id))
+                .Select(l => l.Id).ToList();
+
+            for (int i = 0; i < contextoMensalistas.Count; i++)
+            {
+                Jogador jogador = new Jogador();
+                jogador.Id = contextoMensalistas[i];
+                jogador.NomeJogador = "LEANDRO";
+                jogador.Mensalista = "E";
+                _context.Update(jogador);
+                _context.SaveChangesAsync();
+            }
+            
+        }
+
+        #endregion
+
     }
 }

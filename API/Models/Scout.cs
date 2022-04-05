@@ -19,7 +19,7 @@ namespace API.Models
         public virtual Jogador Jogadores { get; set; }
 
         [Display(Name = "Presença")]
-        public bool Presente { get; set; }
+        public decimal Presente { get; set; }
         //public virtual Parametro fk_parametro { get; set; }
 
         [Display(Name = "Resultado")]
