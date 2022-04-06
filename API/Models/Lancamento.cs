@@ -15,9 +15,9 @@ namespace API.Models
         public int ContaId { get; set; }
         public virtual Conta Contas { get; set; }
 
-        [Required(ErrorMessage = "Obrigatório")]
+        //[Required(ErrorMessage = "Obrigatório")]
         [Display(Name = "Jogador")]
-        public int JogadorId { get; set; }
+        public int? JogadorId { get; set; }
         public virtual Jogador Jogadores { get; set; }
 
         [Required(ErrorMessage = "Obrigatório")]

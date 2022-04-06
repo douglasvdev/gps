@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1QbvemzLda+AvPpEeItnSmhAXpMGYbYDNEDIcLF9txc=",
+  "Hash": "39t8u1mAYQqY8k7r8lCpaa6BZKcJeGD55KofxV1fxRc=",
   "Source": "MVC",
   "BasePath": "_content/MVC",
   "Mode": "Default",
@@ -129,6 +129,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\alertify.rtl.min.css"
+    },
+    {
+      "Identity": "C:\\Users\\a852889\\source\\repos\\GPS\\MVC\\wwwroot\\css\\main.css",
+      "SourceId": "MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\a852889\\source\\repos\\GPS\\MVC\\wwwroot\\",
+      "BasePath": "_content/MVC",
+      "RelativePath": "css/main.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main.css"
     },
     {
       "Identity": "C:\\Users\\a852889\\source\\repos\\GPS\\MVC\\wwwroot\\css\\site.css",

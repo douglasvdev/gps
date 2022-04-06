@@ -8,9 +8,7 @@
 <h5 style="text-align:center"><a>Mensalista: @ViewBag.Mensalista - @ViewBag.Ano</a></h5>
 <br />
 
-@********************COLOCAR FORM DE MES E ANO EM PARTIAL VIEW*@
 <div class="d-flex justify-content-between">
-    @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
     <a asp-action="Tabela" class="btn btn-secondary"><i class="fa fa-futbol-o"></i>  Tabela</a>
     @using (Html.BeginForm("Index", "Scout", FormMethod.Get))
     {

@@ -1,65 +1,75 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewData["empresa"] = "GPS";
+}
+<!DOCTYPE html>
 <html lang="pt-br">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GPS|@ViewData["Title"]</title>
+    <title>@ViewBag.empresa | @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> @*framework para ícone*@
     <link href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" rel="stylesheet" /> @*Script para indice e paginação de tabela -> 1 de 4*@
     <link href="~/css/alertify.min.css" rel="stylesheet"/> @*lib para modal e alerta 1de3 *@
     <link href="~/css/themes/default.min.css" rel="stylesheet" /> @*lib para modal e alerta 2de3*@
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> @*cdn para fonte da pagina*@
     <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header class="divHeader">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GPS</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home pr-3"></i> @ViewBag.empresa</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
+                            <a asp-area="" asp-controller="Scout" asp-action="Index">Scout</a>
+                        </li><div class="vr"></div>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Conta" asp-action="Index">Contas</a>
-                        </li>
+                            <a asp-area="" asp-controller="Lancamento" asp-action="Resumo">Financeiro</a>
+                        </li><div class="vr"></div>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Jogador" asp-action="Index">Jogadores</a>
-                        </li>
+                            <a asp-area="" asp-controller="Jogador" asp-action="Index">Jogadores</a>
+                        </li><div class="vr"></div>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Lancamento" asp-action="Resumo">Financeiro</a>
-                        </li>
+                            <a asp-area="" asp-controller="Conta" asp-action="Index">Contas</a>
+                        </li><div class="vr"></div>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Parametro" asp-action="Index">Parâmetros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Scout" asp-action="Index">Scout</a>
+                            <a asp-area="" asp-controller="Parametro" asp-action="Index">Parâmetros</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>        
     </header>
-    <div class="container">
+
         <main role="main" class="pb-3">
+    <div class="container">
             @RenderBody()
-        </main>
     </div>
+        </main>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container-fluid rodape p-3 text-center">
+            <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
+            <div class="sociais">
+                <a href="https://github.com/douglasvdev"><i class="fa fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/douglasvaguiar"><i class="fa fa-linkedin-square"></i></a>
+                <a href="https://www.instagram.com/douglasv.dev"><i class="fa fa-instagram"></i></a>
+            </div>
         </div>
+        @*<div class="container">
+            &copy; 2022 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>*@
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

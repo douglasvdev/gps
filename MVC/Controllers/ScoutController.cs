@@ -438,7 +438,7 @@ namespace MVC.Controllers
             
         }
 
-        protected string _Ano(string? ano)
+        public string _Ano(string? ano)
         {
             if (ano == null)
             {

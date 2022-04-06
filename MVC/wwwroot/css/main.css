@@ -1,0 +1,45 @@
+﻿body {
+    /*background: linear-gradient(rgb(200,200,200), rgb(144, 144, 144));*/
+    background-color: rgb(20,58,86);
+}
+
+header {
+    background-color: rgb(37,88,126);
+    color: white;
+}
+
+    header a {
+        padding: 0px 10px;
+        text-decoration: none;
+        color: rgb(200,200,200);
+    }
+
+        header a:hover {
+            text-decoration: none;
+            color: white;
+        }
+
+.navbar-collapse {
+    flex-grow: 0;  Ativar /*o display-flex/between*/
+}
+
+main {
+    background-color: lemonchiffon;
+}
+
+footer {
+    background-color: rgb(20,58,86);
+    color: rgb(93,126,151);
+}
+
+.sociais a {
+    font-size: 1.5em;
+    padding: 0px 20px;
+    text-decoration: none;
+    color: rgb(200,200,200);
+}
+
+    .sociais a:hover {
+        text-decoration: none;
+        color: white;
+    }

@@ -14,29 +14,9 @@
     {
         <div class="containerForm">
             <div class="input-group">
-                <select class="form-control" id="mes" name="mes">
-                    <option disabled selected>Mes</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </select>
-                <select asp-items="ViewBag.ApenasAno" class="form-control" id="ano" name="ano">
-                    <option disabled selected>Ano</option>
-                    @*<option>2019</option>
-                    <option>2020</option>
-                    <option>2021</option>
-                    <option>2022</option>
-                    <option>2023</option>*@
-                </select>
+                <partial name="_Mes">
+                
+                <partial name="_Ano">                
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Listar</button>
                 </div>
@@ -71,9 +51,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DtBaixa)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Inativo)
-            </th>*@
             <th class="d-flex justify-content-center">Ação</th>
         </tr>
     </thead>
@@ -98,9 +75,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DtBaixa)
                 </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Inativo)
-                </td>*@
                 <td class="d-flex justify-content-center">
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
                         <i class="fa fa-pencil"></i> Editar

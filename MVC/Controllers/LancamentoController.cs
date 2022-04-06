@@ -27,26 +27,13 @@ namespace MVC.Controllers
         // GET: Lancamento
         public async Task<IActionResult> Index(string? mes, string? ano)
         {
-
-            if (mes == null)
-            {
-                mes = Convert.ToString(DateTime.Now.Month);
-            }
-
-            if (ano == null)
-            {
-                ano = Convert.ToString(DateTime.Now.Year);
-            }
-
-            ViewBag.Mes = mes;
-            ViewBag.Ano = ano;
-
-            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            _Ano(ano);
+            _Mes(mes);
 
             var contexto = _context.Lancamentos.Include(l => l.Contas).Include(l => l.Jogadores)
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)));
             return View(await contexto.ToListAsync());
         }
 
@@ -76,20 +63,8 @@ namespace MVC.Controllers
         public async Task<IActionResult> _Receita(string? mes, string? ano)
         {
             #region Parametros
-            if (mes == null)
-            {
-                mes = Convert.ToString(DateTime.Now.Month);
-            }
-
-            if (ano == null)
-            {
-                ano = Convert.ToString(DateTime.Now.Year);
-            }
-
-            ViewBag.Mes = mes;
-            ViewBag.Ano = ano;
-
-            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            _Ano(ano);
+            _Mes(mes);
             #endregion
 
             #region Receita Geral
@@ -97,8 +72,8 @@ namespace MVC.Controllers
             var contextoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Sum(l => l.Valor);
             ViewBag.GeralReceita = contextoReceita;
 
@@ -109,8 +84,8 @@ namespace MVC.Controllers
             var contextoReceitaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Where(l => l.DtBaixa == null)
                 .Sum(l => l.Valor);
             ViewBag.GeralReceitaAberto = contextoReceitaAberto;
@@ -124,8 +99,8 @@ namespace MVC.Controllers
             var contextoSaldoGrupoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)));
                 //.Where(l => l.DtBaixa == null);
             /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
 
@@ -140,20 +115,8 @@ namespace MVC.Controllers
         public async Task<IActionResult> _Despesa(string? mes, string? ano)
         {
             #region Parametros
-            if (mes == null)
-            {
-                mes = Convert.ToString(DateTime.Now.Month);
-            }
-
-            if (ano == null)
-            {
-                ano = Convert.ToString(DateTime.Now.Year);
-            }
-
-            ViewBag.Mes = mes;
-            ViewBag.Ano = ano;
-
-            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            _Ano(ano);
+            _Mes(mes);
             #endregion
 
             #region Despesa Geral
@@ -161,8 +124,8 @@ namespace MVC.Controllers
             var contextoDespesa = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "S")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Sum(l => l.Valor);
             ViewBag.GeralDespesa = contextoDespesa;
 
@@ -173,8 +136,8 @@ namespace MVC.Controllers
             var contextoDespesaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "S")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Where(l => l.DtBaixa == null)
                 .Sum(l => l.Valor);
             ViewBag.GeralDespesaAberto = contextoDespesaAberto;
@@ -188,8 +151,8 @@ namespace MVC.Controllers
             var contextoSaldoGrupoDespesa = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "S")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes));
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)));
             //.Where(l => l.DtBaixa == null);
             /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
 
@@ -206,20 +169,8 @@ namespace MVC.Controllers
         public async Task<IActionResult> Resumo(string? mes, string? ano)
         {
             #region Parametros
-            if (mes == null)
-            {
-                mes = Convert.ToString(DateTime.Now.Month);
-            }
-
-            if (ano == null)
-            {
-                ano = Convert.ToString(DateTime.Now.Year);
-            }
-
-            ViewBag.Mes = mes;
-            ViewBag.Ano = ano;
-
-            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+            _Ano(ano);
+            _Mes(mes);
             #endregion
 
             #region ResumoGeral
@@ -227,8 +178,8 @@ namespace MVC.Controllers
             var contextoReceita = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Sum(l => l.Valor);
             ViewBag.GeralReceita = contextoReceita;
 
@@ -236,8 +187,8 @@ namespace MVC.Controllers
             var contextoDespesa = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "S")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Sum(l => l.Valor);
             ViewBag.GeralDespesa = contextoDespesa;
 
@@ -252,8 +203,8 @@ namespace MVC.Controllers
             var contextoReceitaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "E")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Where(l => l.DtBaixa == null)
                 .Sum(l => l.Valor);
             ViewBag.GeralReceitaAberto = contextoReceitaAberto;
@@ -262,8 +213,8 @@ namespace MVC.Controllers
             var contextoDespesaAberto = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Contas.Tipo == "S")
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)))
                 .Where(l => l.DtBaixa == null)
                 .Sum(l => l.Valor);
             ViewBag.GeralDespesaAberto = contextoDespesaAberto;
@@ -276,12 +227,11 @@ namespace MVC.Controllers
 
 
             //Tipo Saldo
-            //Falta passar Lista para view
             var contextoTipoSaldo = _context.Lancamentos.Include(l => l.Jogadores).Include(l => l.Contas)
                 .Where(l => l.Inativo == null)
-                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(ano))
-                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(mes))
-                .Where(l => l.DtBaixa == null);
+                //.Where(l => l.DtBaixa == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)))
+                .Where(l => l.DtPrevisao.Month == Convert.ToInt32(_Mes(mes)));
                 /*.GroupBy(l => l.Contas.NomeConta).Select(l => new { l.Key, Soma = l.Sum(c => c.Valor) }); */ //Passar GroupBy para view para aparecer os grupos
 
 
@@ -486,6 +436,32 @@ namespace MVC.Controllers
             }
 
             return valor;
+        }
+
+        public string _Ano(string? ano)
+        {
+            if (ano == null)
+            {
+                ano = Convert.ToString(DateTime.Now.Year);
+            }
+
+            ViewBag.Ano = ano;
+
+            ViewData["ApenasAno"] = new SelectList(_context.Lancamentos.Where(l => l.Inativo == null).Select(l => l.DtPrevisao.Year).Distinct(), "Ano");
+
+            return ano;
+        }
+
+        public string _Mes(string? mes)
+        {
+            if (mes == null)
+            {
+                mes = Convert.ToString(DateTime.Now.Month);
+            }
+
+            ViewBag.Mes = mes;
+
+            return mes;
         }
 
         #endregion

@@ -24,7 +24,11 @@
 /*-------------------------------- MVC
     * Acrescentar campo Time em tabela Scout, que vai receber o Time que jogou em cada partida; 05/04/2022 OK
     * Passar Mensalista S, E, ou N como parametro; 05/04/2022 OK
-    * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW;
+    * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW; 05/04/2022 O
     * Relatorio de Saldo do Mes (Extrato);
+    * Colocar Campo TipoConta em Index de Lançamentos e Ordenar por ele;
     * Jquery para formulario dinamico;
+    * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;
+    * Pular linha antes de H1 em Views;
+    * Table Header Black;
 * -------------------------------------*/
