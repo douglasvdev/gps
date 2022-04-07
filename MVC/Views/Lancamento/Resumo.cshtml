@@ -3,138 +3,143 @@
     ViewData["Title"] = "Resumo";
 }
 
+<br />
 <h1 style="text-align:center">Financeiro</h1>
 <h3 style="text-align:center">Resumo - <a>@ViewBag.Mes/@ViewBag.Ano</a></h3>
 <br />
 
-<div class="d-flex justify-content-between">
-    @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
-    <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list"></i> Lançamentos</a>
-    @using (Html.BeginForm("Resumo", "lancamento", FormMethod.Get))
-    {
-        <div class="containerForm">
-            <div class="input-group">
-                <partial name="_Mes">
+<hr />
+<div class="boxWhite">
+    <div class="d-flex justify-content-between">
+        @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
+        <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list"></i> Lançamentos</a>
+        @using (Html.BeginForm("Resumo", "lancamento", FormMethod.Get))
+        {
+            <div class="containerForm">
+                <div class="input-group">
+                    <partial name="_Mes">
                 
-                <partial name="_Ano">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    <partial name="_Ano">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    }    
-    <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
-        <i class="fa fa-plug"></i> <b> API</b>
-    </a>
+        }    
+        <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
+            <i class="fa fa-plug"></i> <b> API</b>
+        </a>
+    </div>
+    <hr />
+
+    @*<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+        <thead class="table-dark">
+            <tr>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Valor
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-secondary">
+                <td colspan="2">Geral</td>
+            </tr>
+            <tr>
+                <td class="tableReceita">
+                    Receita
+                </td>
+                <td class="tableReceita">
+                    @ViewBag.GeralReceita
+                </td>
+            </tr>
+            <tr>
+                <td class="tableDespesa">
+                    Despesa
+                </td>
+                <td class="tableDespesa">
+                    @ViewBag.GeralDespesa
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Saldo
+                </td>
+                <td>
+                    @ViewBag.GeralSaldo
+                </td>
+            </tr>
+
+            <tr><td></td><td></td></tr>
+
+            <tr class="table-secondary">
+                <td colspan="2">Geral Aberto</td>
+            </tr>
+            <tr>
+                <td class="tableReceita">
+                    Receita
+                </td>
+                <td class="tableReceita">
+                    @ViewBag.GeralReceitaAberto
+                </td>
+            </tr>
+            <tr>
+                <td class="tableDespesa">
+                    Despesa
+                </td>
+                <td class="tableDespesa">
+                    @ViewBag.GeralDespesaAberto
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Saldo
+                </td>
+                <td>
+                    @ViewBag.GeralSaldoAberto
+                </td>
+            </tr>
+        </tbody>
+    </table>*@
+
+    <br />
+
+    <table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+        <thead class=" text-white text-center bg-warning">
+            <tr>
+                <th>
+                    Conta
+                </th>
+                <th>
+                    Valor
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <partial name="_Receita" />
+            <partial name="_Despesa" />
+            <tr class="table-secondary">
+                <td colspan="2">Saldo</td>
+            </tr>
+            <tr>
+                <td>
+                    Geral @ViewBag.Mes/@ViewBag.Ano
+                </td>
+                <td>
+                    @ViewBag.GeralSaldo
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pendente @ViewBag.Mes/@ViewBag.Ano
+                </td>
+                <td>
+                    @ViewBag.GeralSaldoAberto
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <hr />
-
-@*<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
-    <thead class="table-dark">
-        <tr>
-            <th>
-                Tipo
-            </th>
-            <th>
-                Valor
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="table-secondary">
-            <td colspan="2">Geral</td>
-        </tr>
-        <tr>
-            <td class="tableReceita">
-                Receita
-            </td>
-            <td class="tableReceita">
-                @ViewBag.GeralReceita
-            </td>
-        </tr>
-        <tr>
-            <td class="tableDespesa">
-                Despesa
-            </td>
-            <td class="tableDespesa">
-                @ViewBag.GeralDespesa
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Saldo
-            </td>
-            <td>
-                @ViewBag.GeralSaldo
-            </td>
-        </tr>
-
-        <tr><td></td><td></td></tr>
-
-        <tr class="table-secondary">
-            <td colspan="2">Geral Aberto</td>
-        </tr>
-        <tr>
-            <td class="tableReceita">
-                Receita
-            </td>
-            <td class="tableReceita">
-                @ViewBag.GeralReceitaAberto
-            </td>
-        </tr>
-        <tr>
-            <td class="tableDespesa">
-                Despesa
-            </td>
-            <td class="tableDespesa">
-                @ViewBag.GeralDespesaAberto
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Saldo
-            </td>
-            <td>
-                @ViewBag.GeralSaldoAberto
-            </td>
-        </tr>
-    </tbody>
-</table>*@
-
-<br />
-
-<table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
-    <thead class="table-dark">
-        <tr>
-            <th>
-                Conta
-            </th>
-            <th>
-                Valor
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <partial name="_Receita" />
-        <partial name="_Despesa" />
-        <tr class="table-secondary">
-            <td colspan="2">Saldo</td>
-        </tr>
-        <tr>
-            <td>
-                Saldo Geral
-            </td>
-            <td>
-                @ViewBag.GeralSaldo
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Saldo em Aberto
-            </td>
-            <td>
-                @ViewBag.GeralSaldoAberto
-            </td>
-        </tr>
-    </tbody>
-</table>

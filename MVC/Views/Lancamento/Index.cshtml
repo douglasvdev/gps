@@ -4,93 +4,98 @@
     ViewData["Title"] = "Lançamentos";
 }
 
+<br />
 <h1 style="text-align:center">Financeiro</h1>
 <h3 style="text-align:center">Lançamentos - <a>@ViewBag.Mes/@ViewBag.Ano</a></h3>
 <br />
 
-<div class="d-flex justify-content-between">
-    <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
-    @using (Html.BeginForm("Index", "lancamento", FormMethod.Get))
-    {
-        <div class="containerForm">
-            <div class="input-group">
-                <partial name="_Mes">
+<hr />
+<div class="boxWhite">
+    <div class="d-flex justify-content-between">
+        <a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>
+        @using (Html.BeginForm("Index", "lancamento", FormMethod.Get))
+        {
+            <div class="containerForm">
+                <div class="input-group">
+                    <partial name="_Mes">
                 
-                <partial name="_Ano">                
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    <partial name="_Ano">                
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-    <a asp-action="Resumo" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
-    @*<a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
-        <i class="fa fa-plug"></i> <b> API</b>
-    </a>*@
+        }
+        <a asp-action="Resumo" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
+        @*<a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
+            <i class="fa fa-plug"></i> <b> API</b>
+        </a>*@
+    </div>
+    <hr />
+
+    <table id="tabelaIndex" class="table table-responsive-sm table-striped table-hover">
+        <thead style="color: white" class="bg-warning"> @*Am background-color: rgb(255,193,7) | Az rgb(37,88,126)*@
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DtPrevisao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Jogadores)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ObsLancamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DtBaixa)
+                </th>
+                <th class="d-flex justify-content-center">Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtPrevisao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contas.NomeConta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jogadores.NomeJogador)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ObsLancamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtBaixa)
+                    </td>
+                    <td class="d-flex justify-content-center">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                            <i class="fa fa-pencil"></i> Editar
+                        </a> | 
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-default">
+                            <i class="fa fa-info"></i> Detalhes
+                        </a> | 
+                        <a onclick="Inativar(@item.Id)" class="btn btn-sm btn-default">
+                            <i class="fa fa-trash"></i> Excluir
+                        </a>
+                        @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 <hr />
-
-<table id="tabelaIndex" class="table table-responsive-sm table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DtPrevisao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Contas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Jogadores)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ObsLancamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DtBaixa)
-            </th>
-            <th class="d-flex justify-content-center">Ação</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DtPrevisao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Contas.NomeConta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Jogadores.NomeJogador)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ObsLancamento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DtBaixa)
-                </td>
-                <td class="d-flex justify-content-center">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa fa-pencil"></i> Editar
-                    </a> | 
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-default">
-                        <i class="fa fa-info"></i> Detalhes
-                    </a> | 
-                    <a onclick="Inativar(@item.Id)" class="btn btn-sm btn-default">
-                        <i class="fa fa-trash"></i> Excluir
-                    </a>
-                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
 @section Scripts {
     <script>

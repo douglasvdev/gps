@@ -24,7 +24,14 @@ header {
 }
 
 main {
-    background-color: lemonchiffon;
+    /*background-color: lemonchiffon;*/
+    background-color: #dee2e6;
+}
+
+.boxWhite {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 footer {
