@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.empresa | @ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/img/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
@@ -22,7 +23,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
             <div class="container-fluid" style="justify-content: center">
-                <a class="navbar-brand" style="font-size: 3.00rem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home pr-3"></i> @ViewBag.empresa</a>
+                <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/img/logo.png" /></a>
+                @*<a class="navbar-brand" style="font-size: 3.00rem" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home pr-3"></i> @ViewBag.empresa</a>*@
                 @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,6 +60,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container-fluid rodape p-3 text-center">
+            <img style="max-width: 120px" src="~/img/logoBranco.png" />
+            <br />
             <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
             <div class="sociais">
                 <a target="_blank" href="https://github.com/douglasvdev"><i class="fa fa-github"></i></a>

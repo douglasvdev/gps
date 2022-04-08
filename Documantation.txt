@@ -5,16 +5,16 @@
     AspNetCore.Authentication
     AspNetCore.Authentication.JwtBearer
     
-    Criei a classe model Usuario, mas ainda nao fiz o migration porque vou usar usuario local por enquanto; - 18/03/2022
-    Criei a classe para UserRepository - para usar os usuários informados nela, e não buscar nno Banco; - 18/03/2022
-    Criei a classe Settings para armazenar a chave; - 18/03/2022
-    
-    Criar classe Resultado (Jogador de A1 a B10)
-    Criar classe Scout (Estrutura do Scout, porque vai para o BD)
-    Controller ResultadoController instanciando Scout. Ex. var partida = Scout.Get(resultado.)
-    * Trabalhar no JSON de Scout;
-    * Verificar porque Autenticação está funcionando, mas Autorização não.
-* -------------------------------------*/
+    Criei a classe model Usuario, mas ainda nao fiz o migration porque vou usar usuario local por enquanto;              | 18/03/2022
+    Criei a classe para UserRepository - para usar os usuários informados nela, e não buscar nno Banco;                  | 18/03/2022
+    Criei a classe Settings para armazenar a chave;                                                                      | 18/03/2022
+                                                                                                                         
+    Criar classe Resultado (Jogador de A1 a B10)                                                                         |
+    Criar classe Scout (Estrutura do Scout, porque vai para o BD)                                                        |
+    Controller ResultadoController instanciando Scout. Ex. var partida = Scout.Get(resultado.)                           |
+    * Trabalhar no JSON de Scout;                                                                                        |
+    * Verificar porque Autenticação está funcionando, mas Autorização não.                                               |
+* -------------------------------------*/                                                                                |
 
 
 
@@ -22,16 +22,19 @@
 
 
 
-/*-------------------------------- MVC
-    * Acrescentar campo Time em tabela Scout, que vai receber o Time que jogou em cada partida; 05/04/2022 OK
-    * Passar Mensalista S, E, ou N como parametro; 05/04/2022 OK
-    * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW; 05/04/2022 O
-    * Relatorio de Saldo do Mes (Extrato);
-    * Colocar Campo TipoConta em Index de Lançamentos e Ordenar por ele;
-    * Jquery para formulario dinamico;
-    * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;
-    * Pular linha antes de H1 em Views;
-    * Table Header Black;
-    * Função para impedir Nome duplicado por partida;
-    * Exportar Tabelas para Excel;
+/*-------------------------------- MVC //Verde - #198754
+    * Acrescentar campo Time em tabela Scout, que vai receber o Time que jogou em cada partida;                          | 05/04/2022 OK
+    * Passar Mensalista S, E, ou N como parametro;                                                                       | 05/04/2022 OK
+    * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW;                                                                         | 05/04/2022 Ok
+    * Relatorio de Saldo do Mes (Extrato);                                                                               |   
+    * Colocar Campo TipoConta em Index de Lançamentos e Ordenar por ele;                                                 |
+    * jQuery para formulario dinamico principalmente totalizador em Tabela;                                              |
+    * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;            |
+    * Pular linha antes de H1 em Views;                                                                                  | 07/04/2022 OK
+    * Table Header Black;                                                                                                | 07/04/2022 OK
+    * Função para impedir Nome duplicado por partida;                                                                    |
+    * Exportar Tabelas para Excel;                                                                                       |
+    * ranking;                                                                                                           |
+    * Logo e pagina de Cadastro;                                                                                         | 07/04/2022 Proximo Commit
+    * Col:20524 'number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},'  | 08/04/2022 Proximo Commit
 * -------------------------------------*/

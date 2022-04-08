@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Cadastro";
+    ViewData["Title"] = "Home Page";
     Layout = "_LayoutIndex";
 }
 
@@ -9,31 +9,31 @@
 </div>*@
 
 <div class="d-flex justify-content-between p-5">
-    <a asp-controller="Scout" asp-action="Index" class="ancora" style="text-decoration: none">
-        <div class="card text-white text-center bg-success mb-3" style="max-width: 18rem;">
-            @*<div class="card-header">Financeiro</div>*@
-            <div class="card-body">
-                <h5 class="card-title">Scout</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-    </a>
-
-    <a asp-controller="Lancamento" asp-action="Index" class="ancora" style="text-decoration: none">
-        <div class="card text-white text-center bg-warning mb-3" style="max-width: 18rem;">
-            @*<div class="card-header">Financeiro</div>*@
-            <div class="card-body">
-                <h5 class="card-title">Financeiro</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-    </a>
-
-    <a asp-controller="Home" asp-action="Cadastro" class="ancora" style="text-decoration: none">
+    <a asp-controller="Jogador" asp-action="Index" class="ancora" style="text-decoration: none">
         <div class="card text-white text-center bg-info mb-3" style="max-width: 18rem;">
             @*<div class="card-header">Financeiro</div>*@
             <div class="card-body">
-                <h5 class="card-title">Cadastros</h5>
+                <h5 class="card-title">Jogadores</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </a>
+
+    <a asp-controller="Conta" asp-action="Index" class="ancora" style="text-decoration: none">
+        <div class="card text-white text-center bg-info mb-3" style="max-width: 18rem;">
+            @*<div class="card-header">Financeiro</div>*@
+            <div class="card-body">
+                <h5 class="card-title">Contas</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+        </div>
+    </a>
+
+    <a asp-controller="Parametro" asp-action="Index" class="ancora" style="text-decoration: none">
+        <div class="card text-white text-center bg-info mb-3" style="max-width: 18rem;">
+            @*<div class="card-header">Financeiro</div>*@
+            <div class="card-body">
+                <h5 class="card-title">Parâmetros</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
         </div>

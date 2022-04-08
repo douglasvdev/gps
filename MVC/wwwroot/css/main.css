@@ -23,6 +23,10 @@ header {
     flex-grow: 0;  Ativar /*o display-flex/between*/
 }
 
+.ancora:hover {
+    font-size: 105%;
+}
+
 main {
     /*background-color: lemonchiffon;*/
     background-color: #dee2e6;

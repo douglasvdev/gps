@@ -8,6 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.empresa | @ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/img/logo.ico" type="image/x-icon" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
@@ -21,8 +22,9 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home pr-3"></i> @ViewBag.empresa</a>
+            <div class="container-fluid justify-content: space-around">
+                <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/img/logo.png" /></a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-home pr-3"></i> @ViewBag.empresa</a>*@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,6 +38,9 @@
                             <a asp-area="" asp-controller="Lancamento" asp-action="Resumo">Financeiro</a>
                         </li><div class="vr"></div>
                         <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Cadastro">Cadastros</a>
+                        </li><div class="vr"></div>
+                        @*<li class="nav-item">
                             <a asp-area="" asp-controller="Jogador" asp-action="Index">Jogadores</a>
                         </li><div class="vr"></div>
                         <li class="nav-item">
@@ -43,7 +48,7 @@
                         </li><div class="vr"></div>
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Parametro" asp-action="Index">Parâmetros</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -58,6 +63,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container-fluid rodape p-3 text-center">
+            <a asp-controller="Home" asp-action="Index"><img style="max-width: 120px" src="~/img/logoBranco.png" /></a>
+            <hr />
             <p>@ViewBag.empresa &copy; - @DateTime.Now.Year</p>
             <div class="sociais">
                 <a target="_blank" href="https://github.com/douglasvdev"><i class="fa fa-github"></i></a>
