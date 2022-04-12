@@ -271,7 +271,11 @@ namespace MVC.Controllers
             //{
             _context.Add(lancamento);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+
+            var mes = lancamento.DtPrevisao.Month.ToString();
+            var ano = lancamento.DtPrevisao.Year.ToString();
+            return RedirectToAction("Index", new { mes = mes, ano = ano });
             //}
             //ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta", lancamento.ContaId);
             //ViewData["JogadorId"] = new SelectList(_context.Jogadores.Where(l => l.Inativo == null), "Id", "NomeJogador", lancamento.JogadorId);
@@ -331,7 +335,9 @@ namespace MVC.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+            var mes = lancamento.DtPrevisao.Month.ToString();
+            var ano = lancamento.DtPrevisao.Year.ToString();
+            return RedirectToAction("Index", new { mes = mes, ano = ano});
             //}
             //ViewData["ContaId"] = new SelectList(_context.Contas, "Id", "NomeConta", lancamento.ContaId);
             //ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "NomeJogador", lancamento.JogadorId);

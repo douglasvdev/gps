@@ -12,7 +12,7 @@
 <div class="boxWhite">
     <div class="d-flex justify-content-between">
         @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
-        <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-list"></i> Lançamentos</a>
+        <a asp-action="Index" asp-route-mes="@ViewBag.mes" asp-route-ano="@ViewBag.ano" class="btn btn-secondary"><i class="fa fa-list"></i> Lançamentos</a>
         @using (Html.BeginForm("Resumo", "lancamento", FormMethod.Get))
         {
             <div class="containerForm">

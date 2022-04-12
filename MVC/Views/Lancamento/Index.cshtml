@@ -26,7 +26,7 @@
                 </div>
             </div>
         }
-        <a asp-action="Resumo" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
+        <a asp-action="Resumo" asp-route-mes="@ViewBag.mes" asp-route-ano="@ViewBag.ano" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
         @*<a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
             <i class="fa fa-plug"></i> <b> API</b>
         </a>*@
