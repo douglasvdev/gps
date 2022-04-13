@@ -12,7 +12,7 @@
     Criar classe Resultado (Jogador de A1 a B10)                                                                         |
     Criar classe Scout (Estrutura do Scout, porque vai para o BD)                                                        |
     Controller ResultadoController instanciando Scout. Ex. var partida = Scout.Get(resultado.)                           |
-    * Trabalhar no JSON de Scout;                                                                                        |
+    * Trabalhar no JSON de Scout;                                                                                        | 13/04/2022 Proximo Commit
     * Verificar porque Autenticação está funcionando, mas Autorização não.                                               |
 * -------------------------------------*/                                                                                |
 
@@ -29,7 +29,7 @@
     * Relatorio de Saldo do Mes (Extrato);                                                                               |   
     * Colocar Campo TipoConta em Index de Lançamentos e Ordenar por ele;                                                 |
     * jQuery para formulario dinamico principalmente totalizador em Tabela;                                              |
-    * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;            | 12/04/2022 Proximo commit
+    * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;            | 12/04/2022 Ok
     * Pular linha antes de H1 em Views;                                                                                  | 07/04/2022 OK
     * Table Header Black;                                                                                                | 07/04/2022 OK
     * Função para impedir Nome duplicado por partida;                                                                    |
