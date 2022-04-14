@@ -139,7 +139,11 @@
                     @ViewBag.GeralSaldoAberto
                 </td>
             </tr>
+            @*<partial name="_Extrato" />*@
         </tbody>
     </table>
 </div>
 <hr />
+<div>
+    <a asp-action="Extrato" asp-route-ano="@ViewBag.ano" class="btn btn-secondary"><i class="fa fa-bars"></i> Extrato</a>
+</div>

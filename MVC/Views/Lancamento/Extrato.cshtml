@@ -1,0 +1,64 @@
+﻿@model IEnumerable<API.Models.Lancamento>
+
+@{
+    ViewData["Title"] = "Extrato";
+}
+
+<br />
+<h1 style="text-align:center">Financeiro</h1>
+<h3 style="text-align:center">Extrato - <a>@ViewBag.Ano</a></h3>
+<br />
+
+<hr />
+<div class="boxWhite">
+    <div class="d-flex justify-content-between">
+        @*<a asp-action="Create" class="btn btn-secondary"><i class="fa fa-plus-circle"></i> Incluir</a>*@
+        <a asp-action="Resumo" asp-route-mes="@ViewBag.mes" asp-route-ano="@ViewBag.ano" class="btn btn-secondary"><i class="fa fa-money"></i> Resumo</a>
+        @using (Html.BeginForm("Extrato", "lancamento", FormMethod.Get))
+        {
+            <div class="containerForm">
+                <div class="input-group">
+                    <partial name="_Ano">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    </div>
+                </div>
+            </div>
+        }    
+        <a target="_blank" href="http://localhost:5172/api/lancamentos" class="btn" data-toggle="tooltip" data-html="true" title="API de Lançamentos">
+            <i class="fa fa-plug"></i> <b> API</b>
+        </a>
+    </div>
+    <hr />
+
+    <table class="table table-responsive-sm table-striped table-hover" style="font-weight:bolder">
+        <thead class=" text-white text-center bg-warning">
+            <tr>
+                <th>
+                    Mes
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Saldo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.GroupBy(l => l.DtPrevisao.Month).Select(l => new {l.Key, Valor = l.Sum(l => l.Valor)})) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>

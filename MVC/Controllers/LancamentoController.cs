@@ -163,6 +163,22 @@ namespace MVC.Controllers
 
         #endregion
 
+        #region EXTRATO
+
+        public async Task<IActionResult> Extrato(string? ano)
+        {
+            #region Parametros
+            _Ano(ano);
+            #endregion
+
+            var contextoExtrato = _context.Lancamentos.Include(l => l.Contas).Include(l => l.Jogadores)
+                .Where(l => l.Inativo == null)
+                .Where(l => l.DtPrevisao.Year == Convert.ToInt32(_Ano(ano)));
+            return View(contextoExtrato);
+        }
+
+        #endregion
+
         #region RESUMO
 
         // GET: Lancamento

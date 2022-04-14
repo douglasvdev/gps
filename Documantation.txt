@@ -12,7 +12,7 @@
     Criar classe Resultado (Jogador de A1 a B10)                                                                         |
     Criar classe Scout (Estrutura do Scout, porque vai para o BD)                                                        |
     Controller ResultadoController instanciando Scout. Ex. var partida = Scout.Get(resultado.)                           |
-    * Trabalhar no JSON de Scout;                                                                                        | 13/04/2022 Proximo Commit
+    * Trabalhar no JSON de Scout;                                                                                        | 13/04/2022 Ok
     * Verificar porque Autenticação está funcionando, mas Autorização não.                                               |
 * -------------------------------------*/                                                                                |
 
