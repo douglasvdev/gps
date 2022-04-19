@@ -26,7 +26,7 @@
     * Acrescentar campo Time em tabela Scout, que vai receber o Time que jogou em cada partida;                          | 05/04/2022 OK
     * Passar Mensalista S, E, ou N como parametro;                                                                       | 05/04/2022 OK
     * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW;                                                                         | 05/04/2022 Ok
-    * Relatorio de Saldo do Mes (Extrato);                                                                               |   
+    * Relatorio de Saldo do Mes (Extrato);                                                                               | 14/04/2022 Criei a funcao de ultimo dia de cada mes  
     * Colocar Campo TipoConta em Index de Lançamentos e Ordenar por ele;                                                 |
     * jQuery para formulario dinamico principalmente totalizador em Tabela;                                              |
     * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;            | 12/04/2022 Ok
@@ -37,4 +37,5 @@
     * ranking;                                                                                                           |
     * Logo e pagina de Cadastro;                                                                                         | 07/04/2022 Ok
     * Col:20524 'number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},'  | 08/04/2022 Ok
+    * Trigger de LOG e criar view (Hide) para visualizar Logs.                                                           | 
 * -------------------------------------*/

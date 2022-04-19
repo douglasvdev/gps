@@ -486,6 +486,19 @@ namespace MVC.Controllers
             return mes;
         }
 
+        public List<DateTime> MaiorDataMes(string ano)
+        {
+            ano = _Ano(ano);
+            List<DateTime> list = new List<DateTime>();
+            for (int i = 1; i <= 12; i++)
+            {
+                list.Add(new DateTime(Convert.ToInt32(ano), i, DateTime.DaysInMonth(Convert.ToInt32(ano), i)));
+                //new DateTime(Convert.ToInt32(ano), i, DateTime.DaysInMonth(Convert.ToInt32(ano), i));
+            }
+
+            return list;
+        }
+
         #endregion
     }
 }
