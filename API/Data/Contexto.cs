@@ -12,6 +12,7 @@ namespace API.Data
         public DbSet<Lancamento> Lancamentos { get; set; }
         //public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Parametro> Parametros { get; set; }
+        public DbSet<Log> Logs { get; set; }
         public DbSet<Scout> Scouts { get; set; }
 
         public Contexto()
