@@ -284,18 +284,19 @@ namespace MVC.Controllers
             lancamento.Valor = ConverterValor(lancamento.ContaId, lancamento.Valor);
 
             //if (ModelState.IsValid)
-            //{
-            _context.Add(lancamento);
+            if (lancamento.DtPrevisao.ToString() != "01/01/0001 00:00:00" && lancamento.ContaId.ToString() != "0")
+            {
+                _context.Add(lancamento);
                 await _context.SaveChangesAsync();
                 //return RedirectToAction(nameof(Index));
 
             var mes = lancamento.DtPrevisao.Month.ToString();
             var ano = lancamento.DtPrevisao.Year.ToString();
             return RedirectToAction("Index", new { mes = mes, ano = ano });
-            //}
-            //ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta", lancamento.ContaId);
-            //ViewData["JogadorId"] = new SelectList(_context.Jogadores.Where(l => l.Inativo == null), "Id", "NomeJogador", lancamento.JogadorId);
-            //return View(lancamento);
+            }
+            ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta", lancamento.ContaId);
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores.Where(l => l.Inativo == null), "Id", "NomeJogador", lancamento.JogadorId);
+            return View(lancamento);
         }
 
         #endregion
@@ -448,7 +449,7 @@ namespace MVC.Controllers
             return _context.Lancamentos.Any(e => e.Id == id);
         }
 
-        private decimal ConverterValor(int idConta, decimal valor)
+        private decimal ConverterValor(int? idConta, decimal valor)
         {
             ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta");
             var tipoConta = _context.Contas.Where(c => c.Id == idConta).Where(c => c.Tipo == "S");
