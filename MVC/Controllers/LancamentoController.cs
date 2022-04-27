@@ -274,26 +274,17 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ContaId,JogadorId,Valor,ObsLancamento,DtPrevisao,DtBaixa,Inativo")] Lancamento lancamento)
         {
-
-            /*var tipoConta = _context.Contas.Where(c => c.Id == lancamento.ContaId).Where(c => c.Tipo == "S");
-            if (tipoConta.Any())
-            {
-                lancamento.Valor = lancamento.Valor * (-1);
-            }*/
-
             lancamento.Valor = ConverterValor(lancamento.ContaId, lancamento.Valor);
 
-            //if (ModelState.IsValid)
             if (lancamento.DtPrevisao.ToString() != "01/01/0001 00:00:00" && lancamento.ContaId.ToString() != "0")
             {
                 _context.Add(lancamento);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-
-            var mes = lancamento.DtPrevisao.Month.ToString();
-            var ano = lancamento.DtPrevisao.Year.ToString();
-            return RedirectToAction("Index", new { mes = mes, ano = ano });
+                var mes = lancamento.DtPrevisao.Month.ToString();
+                var ano = lancamento.DtPrevisao.Year.ToString();
+                return RedirectToAction("Index", new { mes = mes, ano = ano });
             }
+
             ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta", lancamento.ContaId);
             ViewData["JogadorId"] = new SelectList(_context.Jogadores.Where(l => l.Inativo == null), "Id", "NomeJogador", lancamento.JogadorId);
             return View(lancamento);
@@ -334,7 +325,8 @@ namespace MVC.Controllers
             }
 
             //if (ModelState.IsValid)
-            //{
+            if(lancamento.DtPrevisao.ToString() != "01/01/0001 00:00:00" && lancamento.ContaId.ToString() != "0")
+            {
                 try
                 {
                     lancamento.Valor = ConverterValor(lancamento.ContaId, lancamento.Valor);
@@ -352,13 +344,13 @@ namespace MVC.Controllers
                         throw;
                     }
                 }
-            var mes = lancamento.DtPrevisao.Month.ToString();
-            var ano = lancamento.DtPrevisao.Year.ToString();
-            return RedirectToAction("Index", new { mes = mes, ano = ano});
-            //}
-            //ViewData["ContaId"] = new SelectList(_context.Contas, "Id", "NomeConta", lancamento.ContaId);
-            //ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "NomeJogador", lancamento.JogadorId);
-            //return View(lancamento);
+                var mes = lancamento.DtPrevisao.Month.ToString();
+                var ano = lancamento.DtPrevisao.Year.ToString();
+                return RedirectToAction("Index", new { mes = mes, ano = ano});
+            }
+            ViewData["ContaId"] = new SelectList(_context.Contas, "Id", "NomeConta", lancamento.ContaId);
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "NomeJogador", lancamento.JogadorId);
+            return View(lancamento);
         }
 
         #endregion
@@ -449,7 +441,7 @@ namespace MVC.Controllers
             return _context.Lancamentos.Any(e => e.Id == id);
         }
 
-        private decimal ConverterValor(int? idConta, decimal valor)
+        private decimal ConverterValor(int idConta, decimal valor)
         {
             ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta");
             var tipoConta = _context.Contas.Where(c => c.Id == idConta).Where(c => c.Tipo == "S");
