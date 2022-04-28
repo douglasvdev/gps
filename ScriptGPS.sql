@@ -452,3 +452,126 @@ as
 			'} Alterado com sucesso!', GETDATE());
 			print('T. Registro alterado com sucesso!');
 		end
+
+---------------------------------------------------------Trigger | Log Delete Contas------------------------------------------------------
+
+create trigger T_LogDeleteContas
+on Contas
+after delete
+as
+
+	declare @newNomeConta varchar(100)
+	declare @newTipoConta varchar(1)
+	declare @newObsConta varchar(100)
+	declare @newInativo varchar(20)
+
+	select @newNomeConta = (select deleted.NomeConta from deleted)
+	select @newTipoConta = (select deleted.Tipo from deleted)
+	if((select deleted.ObsConta from deleted) is NULL) select @newObsConta = (select 'Nulo' from deleted) else select @newObsConta = (select deleted.ObsConta from deleted)
+	if((select deleted.Inativo from deleted) is NULL) select @newInativo = (select 'Nulo' from deleted) else select @newInativo = (select deleted.Inativo from deleted)
+
+	begin
+		insert into Logs Values (null, 'Exclusao', 'Contas', '{NomeConta:'+@newNomeConta+ ' | Tipo:'+@newTipoConta+ ' | ObsConta:'+@newObsConta+ ' | Inativo:'+@newInativo+ '} Excluido com sucesso!', GETDATE());
+		print('T. Registro excluido com sucesso!');
+	end
+
+---------------------------------------------------------Trigger | Log Delete Jogadores------------------------------------------------------
+create trigger T_LogDeleteJogadores
+on Jogadores
+after delete
+as
+
+	declare @newNomeJogador varchar(100)
+	declare @newMensalista varchar(1)
+	declare @newObsJogador varchar(100)
+	declare @newInativo varchar(20)
+
+	select @newNomeJogador = (select deleted.NomeJogador from deleted)
+	select @newMensalista = (select deleted.Mensalista from deleted)
+	if((select deleted.ObsJogador from deleted) is NULL) select @newObsJogador = (select 'Nulo' from deleted) else select @newObsJogador = (select deleted.ObsJogador from deleted)
+	if((select deleted.Inativo from deleted) is NULL) select @newInativo = (select 'Nulo' from deleted) else select @newInativo = (select deleted.Inativo from deleted)
+
+	begin
+		insert into Logs Values (null, 'Exclusao', 'Jogadores', '{NomeJogador:'+@newNomeJogador+ ' | Mensalista:'+@newMensalista+ ' | ObsJogador:'+@newObsJogador+ ' | Inativo:'+@newInativo+ '} Excluido com sucesso!', GETDATE());
+		print('T. Registro excluido com sucesso!');
+	end
+
+
+---------------------------------------------------------Trigger | Log Delete Parametros------------------------------------------------------
+create trigger T_LogDeleteParametros
+on Parametros
+after delete
+as
+
+	declare @newDescParametro varchar(100)
+	declare @newCodParametro varchar(2)
+	declare @newPonto varchar(100)
+	declare @newInativo varchar(20)
+
+	select @newDescParametro = (select deleted.DescParametro from deleted)
+	select @newCodParametro = (select deleted.CodParametro from deleted)
+	select @newPonto = (select deleted.CodParametro from deleted)
+	if((select deleted.Inativo from deleted) is NULL) select @newInativo = (select 'Nulo' from deleted) else select @newInativo = (select deleted.Inativo from deleted)
+
+	begin
+		insert into Logs Values (null, 'Exclusao', 'Parametros', '{DescParametro:'+@newDescParametro+ ' | CodParametro:'+@newCodParametro+ ' | Ponto:'+@newPonto+ ' | Inativo:'+@newInativo+ '} Excluido com sucesso!', GETDATE());
+		print('T. Registro excluido com sucesso!');
+	end
+
+---------------------------------------------------------Trigger | Log Delete Lancamentos------------------------------------------------------
+create trigger T_LogDeleteLancamentos
+on Lancamentos
+after delete
+as
+
+	declare @newContaid varchar(100)
+	declare @newJogadorId varchar(100)
+	declare @newValor varchar(100)
+	declare @newObsLancamento varchar(100)
+	declare @newDtPrevisao varchar(20)
+	declare @newDtBaixa varchar(20)
+	declare @newInativo varchar(20)
+
+	if((select deleted.ContaId from deleted) is NULL) select @newContaId = (select 'Nulo' from deleted) else select @newContaId = (select deleted.ContaId from deleted)
+	if((select deleted.JogadorId from deleted) is NULL) select @newJogadorId = (select 'Nulo' from deleted) else select @newJogadorId = (select deleted.JogadorId from deleted)
+	select @newValor = (select deleted.Valor from deleted)
+	if((select deleted.ObsLancamento from deleted) is NULL) select @newObsLancamento = (select 'Nulo' from deleted) else select @newObsLancamento = (select deleted.ObsLancamento from deleted)
+	if((select deleted.DtPrevisao from deleted) is NULL) select @newDtPrevisao = (select 'Nulo' from deleted) else select @newDtPrevisao = (select deleted.DtPrevisao from deleted)
+	if((select deleted.DtBaixa from deleted) is NULL) select @newDtBaixa = (select 'Nulo' from deleted) else select @newDtBaixa = (select deleted.DtBaixa from deleted)
+	if((select deleted.Inativo from deleted) is NULL) select @newInativo = (select 'Nulo' from deleted) else select @newInativo = (select deleted.Inativo from deleted)
+
+	begin
+		insert into Logs Values (null, 'Exclusao', 'Lancamentos', '{Contaid:'+@newContaid+ ' | JogadorId:'+@newJogadorId+ ' | Valor:'+@newValor+ ' | ObsLancamento:'+@newObsLancamento+ ' | DtPrevisao:'+@newDtPrevisao+ ' | DtBaixa:'+@newDtBaixa+ ' | Inativo:'+@newInativo+ '} Excluido com sucesso!', GETDATE());
+		print('T. Registro excluido com sucesso!');
+	end
+
+---------------------------------------------------------Trigger | Log Delete Scouts------------------------------------------------------
+create trigger T_LogDeleteScouts
+on Scouts
+after delete
+as
+	declare @newDtPartida varchar(20)
+	declare @newJogadorId varchar(100)
+	declare @newPresente varchar(5)
+	declare @newParametroId varchar(100)
+	declare @newGol varchar(100)
+	declare @newAssistencia varchar(100)
+	declare @newObsScout varchar(100)
+	declare @newInativo varchar(20)
+	declare @newTime varchar(100)
+
+
+	select @newDtPartida = (select deleted.DtPartida from deleted)
+	select @newJogadorId = (select deleted.JogadorId from deleted)
+	select @newPresente = (select deleted.Presente from deleted)
+	select @newParametroId = (select deleted.ParametroId from deleted)
+	if((select deleted.Gol from deleted) is NULL) select @newGol = (select 'Nulo' from deleted) else select @newGol = (select deleted.Gol from deleted)
+	if((select deleted.Assistencia from deleted) is NULL) select @newAssistencia = (select 'Nulo' from deleted) else select @newAssistencia = (select deleted.Assistencia from deleted)
+	if((select deleted.ObsScout from deleted) is NULL) select @newObsScout = (select 'Nulo' from deleted) else select @newObsScout = (select deleted.ObsScout from deleted)
+	if((select deleted.Inativo from deleted) is NULL) select @newInativo = (select 'Nulo' from deleted) else select @newInativo = (select deleted.Inativo from deleted)
+	if((select deleted.Time from deleted) is NULL) select @newTime = (select 'Nulo' from deleted) else select @newTime = (select deleted.Time from deleted)
+
+	begin
+		insert into Logs Values (null, 'Exclusao', 'Scouts', '{DtPartida:'+@newDtPartida+ ' | JogadorId:'+@newJogadorId+ ' | Presente:'+@newPresente+ ' | ParametroId:'+@newParametroId+ ' | Gol:'+@newGol+ ' | Assistencia:'+@newAssistencia+ ' | ObsScout:'+@newObsScout+ ' | Inativo:'+@newInativo+ ' | Time:'+@newTime+ '} Excluido com sucesso!', GETDATE());
+		print('T. Registro excluido com sucesso!');
+	end
