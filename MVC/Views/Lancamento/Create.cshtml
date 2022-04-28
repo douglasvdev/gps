@@ -48,13 +48,14 @@
                             <label style="color:brown"> *</label>
                         </div>
                         <select asp-for="ContaId" class ="form-control" asp-items="ViewBag.ContaId"><option></option></select>
+                        <span asp-validation-for="ContaId" class="text-danger"></span>
                     </div>
                     <br />
                     <div class="form-group">
-                        <div>
+                        @*<div>*@
                             <label asp-for="JogadorId" class="control-label"></label>
-                            <label style="color:brown"> *</label>
-                        </div>
+                            @*<label style="color:brown"> *</label>
+                        </div>*@
                         <select asp-for="JogadorId" class ="form-control" asp-items="ViewBag.JogadorId"><option></option></select>
                     </div>
                     <br />
