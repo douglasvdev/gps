@@ -317,7 +317,7 @@ as
 		end
 	else
 		begin
-			insert into Logs Values (null, 'Alteracao', 'Paramatros', 
+			insert into Logs Values (null, 'Alteracao', 'Parametros', 
 			'{DescParametro:DE"'+@oldDescParametro+'"PARA"'+@newDescParametro+
 			'" | CodParametro:DE"'+@oldCodParametro+'"PARA"'+@newCodParametro+ 
 			'" | Ponto:DE"'+@oldPonto+'"PARA"'+@newPonto+ 

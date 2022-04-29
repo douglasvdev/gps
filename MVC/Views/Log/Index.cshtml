@@ -1,0 +1,77 @@
+﻿@model IEnumerable<API.Models.Log>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h1 style="text-align:center">Log</h1>
+<h3 style="text-align:center">Logs - <a>@ViewBag.Mes/@ViewBag.Ano</a></h3>
+<br />
+
+<hr />
+<div class="boxWhite">
+    <div class="d-flex justify-content-center">
+        @using (Html.BeginForm("Index", "Log", FormMethod.Get))
+        {
+            <div class="containerForm">
+                <div class="input-group">
+                    <partial name="_Mes">
+                
+                    <partial name="_Ano">                
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Listar</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    <table id="tabelaIndex" class="table table-responsive-sm table-striped table-hover">
+        <thead style="color: white" class="bg-secondary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Acao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tabela)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dados)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quando)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Acao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tabela)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quando)
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+</div>
+<hr />
+
+@section Scripts {    
+    @Html.Partial("../Shared/_LayoutTabela")
+}

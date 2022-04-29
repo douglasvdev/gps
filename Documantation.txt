@@ -38,7 +38,9 @@
     * Logo e pagina de Cadastro;                                                                                         | 07/04/2022 Ok
     * Col:20524 'number:function(a,b){return this.optional(b)||/^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(a)},'  | 08/04/2022 Ok
     * Trigger de LOG (Criar OK, Editar e Deletar)                                                                        | 
-    * Criar view (Hide) para visualizar Logs.                                                                            | 
+    * Criar view Hide (/Log) para visualizar Logs.                                                                       | Proximo commmit
     * Erro ao enviar Lancamento sem DtPrevisao ou Conta                                                                  | 26/04/2022 Ok
     * Tela com os meses para travar/destravar alteração em lancamento                                                    | 
+    * Funcao de Converter Valor precisa ser reajustada por causa da tela de Edit que converte novamente                  | 
+    * Variavel ano e mes para funcoes em controller | Excluir view _Mes e usar a de Shared                               | 
 * -------------------------------------*/
