@@ -445,9 +445,18 @@ namespace MVC.Controllers
         {
             ViewData["ContaId"] = new SelectList(_context.Contas.Where(l => l.Inativo == null), "Id", "NomeConta");
             var tipoConta = _context.Contas.Where(c => c.Id == idConta).Where(c => c.Tipo == "S");
-            if (tipoConta.Any())
+            if (valor >= 0)
             {
-                valor = valor * (-1);
+                if (tipoConta.Any())
+                {
+                    valor = valor * (-1);
+                }
+            } else
+            {
+                if (!tipoConta.Any())
+                {
+                    valor = valor * (-1);
+                }
             }
 
             return valor;
