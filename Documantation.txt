@@ -32,7 +32,7 @@
     * Action para pular de Resumo para Lançamentos/Index (ou vice versa) carregando Mês e ano como parâmetro;            | 12/04/2022 Ok
     * Pular linha antes de H1 em Views;                                                                                  | 07/04/2022 OK
     * Table Header Black;                                                                                                | 07/04/2022 OK
-    * Função para impedir Nome duplicado por partida;                                                                    |
+    * Função para impedir Nome duplicado por partida;                                                                    | 03/05/2022 Falta pensar como comparar os 20 Jog
     * Exportar Tabelas para Excel;                                                                                       |
     * ranking;                                                                                                           |
     * Logo e pagina de Cadastro;                                                                                         | 07/04/2022 Ok
@@ -42,6 +42,6 @@
     * Erro ao enviar Lancamento sem DtPrevisao ou Conta                                                                  | 26/04/2022 Ok
     * Tela com os meses para travar/destravar alteração em lancamento                                                    | 
     * Funcao de Converter Valor precisa ser reajustada por causa da tela de Edit que converte novamente                  | 02/05/2022 Ok
-    * Variavel ano e mes para funcoes em controller | Excluir view _Mes e usar a de Shared                               | 
+    * Variavel ano e mes para funcoes em controller | Excluir view _Mes e usar a de Shared                               | 02/05/2022 Proximo commit
     * Melhorar a trigger de Update para mostrar apenas o campo que foi alterado. Usando o If @oldValor == @newValor      | 
 * -------------------------------------*/

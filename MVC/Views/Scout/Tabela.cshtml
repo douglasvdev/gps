@@ -12,7 +12,7 @@
 <hr />
 <div class="boxWhite">
     <div class="d-flex justify-content-center">
-        <form asp-action="Tabela" autocomplete="off">
+        <form asp-action="Tabela" autocomplete="off" name="formTabela" >
             <div class="card col-md-4">
                 <div class="card-header text-white text-center bg-success">Detalhes</div>
                 <div class="card-body row">
@@ -324,7 +324,7 @@
                     <br />
                     <div class="form-group">
                         @*<input type="submit" value="Create" class="btn btn-primary" />*@
-                        <button type="submit" class="btn btn-secondary">
+                        <button type="submit" class="btn btn-secondary" onclick="return validaDuplicado()">
                             <i class="fa fa-floppy-o"> Salvar</i>
                         </button>
                     </div>
@@ -345,4 +345,19 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        function validaDuplicado(){
+            var jogA1 = formTabela.jogA1.value;
+            var jogB1 = formTabela.jogB1.value;
+
+            if(jogA1 == jogB1){
+                //alert('Nome duplicado');
+                alertify.error('Nome duplicado');
+                formTabela.jogB1.focus();
+                return false;
+            }
+        }
+    </script>
+
 }
