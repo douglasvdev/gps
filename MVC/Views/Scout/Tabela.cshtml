@@ -324,7 +324,7 @@
                     <br />
                     <div class="form-group">
                         @*<input type="submit" value="Create" class="btn btn-primary" />*@
-                        <button type="submit" class="btn btn-secondary" onclick="return validaDuplicado()">
+                        <button type="submit" class="btn btn-secondary" onclick="return validaDuplicado2()">
                             <i class="fa fa-floppy-o"> Salvar</i>
                         </button>
                     </div>
@@ -347,16 +347,39 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script type="text/javascript">
-        function validaDuplicado(){
-            var jogA1 = formTabela.jogA1.value;
-            var jogB1 = formTabela.jogB1.value;
+        function validaDuplicado2(){
+            var jogA1 = (formTabela.jogA1.value == '' ? "a" : formTabela.jogA1.value);
+            var jogB1 = (formTabela.jogB1.value == '' ? "b" : formTabela.jogB1.value);
+            var jogA2 = (formTabela.jogA2.value == '' ? "c" : formTabela.jogA2.value);
+            var jogB2 = (formTabela.jogB2.value == '' ? "d" : formTabela.jogB2.value);
+            var jogA3 = (formTabela.jogA3.value == '' ? "e" : formTabela.jogA3.value);
+            var jogB3 = (formTabela.jogB3.value == '' ? "f" : formTabela.jogB3.value);
+            var jogA4 = (formTabela.jogA4.value == '' ? "g" : formTabela.jogA4.value);
+            var jogB4 = (formTabela.jogB4.value == '' ? "h" : formTabela.jogB4.value);
+            var jogA5 = (formTabela.jogA5.value == '' ? "i" : formTabela.jogA5.value);
+            var jogB5 = (formTabela.jogB5.value == '' ? "j" : formTabela.jogB5.value);
+            var jogA6 = (formTabela.jogA6.value == '' ? "k" : formTabela.jogA6.value);
+            var jogB6 = (formTabela.jogB6.value == '' ? "l" : formTabela.jogB6.value);
+            var jogA7 = (formTabela.jogA7.value == '' ? "m" : formTabela.jogA7.value);
+            var jogB7 = (formTabela.jogB7.value == '' ? "n" : formTabela.jogB7.value);
+            var jogA8 = (formTabela.jogA8.value == '' ? "o" : formTabela.jogA8.value);
+            var jogB8 = (formTabela.jogB8.value == '' ? "p" : formTabela.jogB8.value);
+            var jogA9 = (formTabela.jogA9.value == '' ? "q" : formTabela.jogA9.value);
+            var jogB9 = (formTabela.jogB9.value == '' ? "r" : formTabela.jogB9.value);
+            var jogA10 = (formTabela.jogA10.value == '' ? "s" : formTabela.jogA10.value);
+            var jogB10 = (formTabela.jogB10.value == '' ? "t" : formTabela.jogB10.value);
+            var jogadores = [jogA1, jogA2, jogA3, jogA4, jogA5, jogA6, jogA7, jogA8, jogA9, jogA10, jogB1, jogB2, jogB3, jogB4, jogB5, jogB6, jogB7, jogB8, jogB9, jogB10];
 
-            if(jogA1 == jogB1){
-                //alert('Nome duplicado');
-                alertify.error('Nome duplicado');
-                formTabela.jogB1.focus();
-                return false;
+            //var unicos = [... new Set(jogadores)];
+
+            function temDuplicado(array){
+                return (new Set(array)).size !== array.length;
             }
+
+            if(temDuplicado(jogadores)){
+                alertify.error('Tabela com Nome duplicado');
+                return false;
+            }            
         }
     </script>
 
