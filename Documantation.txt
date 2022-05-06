@@ -28,11 +28,11 @@
     * COLOCAR FORM DE MES E ANO EM PARTIAL VIEW;                                                                         | 05/04/2022 Ok
     * Relatorio de Saldo do Mes (Extrato);                                                                               | 14/04/2022 Criei a funcao de ultimo dia de cada mes  
     * Colocar Campo TipoConta em Index de Lancamentos e Ordenar por ele;                                                 |
-    * jQuery para formulario dinamico principalmente totalizador em Tabela;                                              |
+    * jQuery para formulario dinamico principalmente totalizador em Tabela;                                              | 06/05/2022 Ok
     * Action para pular de Resumo para Lancamentos/Index (ou vice versa) carregando Mes e ano como parametro;            | 12/04/2022 Ok
     * Pular linha antes de H1 em Views;                                                                                  | 07/04/2022 OK
     * Table Header Black;                                                                                                | 07/04/2022 OK
-    * Funcao para impedir Nome duplicado por partida;                                                                    | 03/05/2022 Falta pensar como comparar os 20 Jog
+    * Funcao para impedir Nome duplicado por partida;                                                                    | 04/05/2022 Ok
     * Exportar Tabelas para Excel;                                                                                       |
     * ranking;                                                                                                           |
     * Logo e pagina de Cadastro;                                                                                         | 07/04/2022 Ok
