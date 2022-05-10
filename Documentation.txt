@@ -45,5 +45,6 @@
     * Funcao de Converter Valor precisa ser reajustada por causa da tela de Edit que converte novamente                  | 02/05/2022 Ok
     * Variavel ano e mes para funcoes em controller | Excluir view _Mes e usar a de Shared                               | 02/05/2022 Ok
     * Melhorar a trigger de Update para mostrar apenas o campo que foi alterado. Usando o If @oldValor == @newValor      | 
-    * Verificar metodo ValidarMensalistaSemPresenca() - Se não for para selecionar mais de um tipo em Scout, criar um    | 
+    * Verificar metodo ValidarMensalistaSemPresenca() - Se nao for para selecionar mais de um tipo em Scout, criar um    | 
+    * Tela de Login (Identity)                                                                                           | 
 * -------------------------------------*/

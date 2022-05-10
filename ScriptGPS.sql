@@ -1,3 +1,9 @@
+/*Consultar Procedure
+select * 
+  from information_schema.ROUTINES
+where routine_type = 'PROCEDURE'
+*/
+
 --DECLARE @SEMANA INT , @FIM BIT
 --SELECT @SEMANA = 3595,  @FIM = 1
 
