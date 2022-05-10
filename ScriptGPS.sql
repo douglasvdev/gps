@@ -1,3 +1,6 @@
+--DECLARE @SEMANA INT , @FIM BIT
+--SELECT @SEMANA = 3595,  @FIM = 1
+
 select * from Logs
 select * from Scouts where JogadorId = 6
 select * from Lancamentos where Year(DtPrevisao) = 2022 and Month(DtPrevisao) = 04

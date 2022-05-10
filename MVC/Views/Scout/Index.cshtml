@@ -70,55 +70,59 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model.GroupBy(l => l.Jogadores.NomeJogador)
-        .Select(l => new { l.Key,
-            Rank = 0,
-            Pontos = Convert.ToInt32(l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)),
-            MediaPontos = (l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)) / l.Sum(p => p.Presente),
-            Gols = l.Sum(c => c.Gol),
-            MediaGols = l.Sum(c => c.Gol) / l.Sum(p => p.Presente),
-            Presenca = Convert.ToInt32(l.Sum(p => p.Presente)),
-            Falta = l.Count(s => s.Parametros.Id == 2),
-            Vitoria = l.Count(v => v.Parametros.CodParametro == "V"),
-            Empate = l.Count(e => e.Parametros.CodParametro == "E"),
-            Derrota = l.Count(d => d.Parametros.CodParametro == "D")
-        }).OrderByDescending(l => l.Pontos)) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rank)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Key)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pontos)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MediaPontos)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gols)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MediaGols)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Presenca)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Falta)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vitoria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Empate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Derrota)
-                </td>
-            </tr>
-    }
+            @{int rank = 1;}
+            @foreach (var item in Model.GroupBy(l => l.Jogadores.NomeJogador)
+            .Select(l => new { l.Key,
+                Rank = rank,
+                Pontos = Convert.ToInt32(l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)),
+                MediaPontos = (l.Sum(c => c.Parametros.Ponto) + l.Sum(p => p.Presente)) / l.Sum(p => p.Presente),
+                Gols = l.Sum(c => c.Gol),
+                MediaGols = l.Sum(c => c.Gol) / l.Sum(p => p.Presente),
+                Presenca = Convert.ToInt32(l.Sum(p => p.Presente)),
+                Falta = l.Count(s => s.Parametros.Id == 2),
+                Vitoria = l.Count(v => v.Parametros.CodParametro == "V"),
+                Empate = l.Count(e => e.Parametros.CodParametro == "E"),
+                Derrota = l.Count(d => d.Parametros.CodParametro == "D")
+            }
+            ).OrderByDescending(l => l.Pontos)) 
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => rank)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Key)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pontos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MediaPontos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gols)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MediaGols)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Presenca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Falta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vitoria)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Derrota)
+                    </td>
+                    </tr>
+                    rank = rank + 1;
+            }
         </tbody>
     </table>
 </div>

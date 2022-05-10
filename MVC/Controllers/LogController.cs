@@ -7,13 +7,16 @@ namespace MVC.Controllers
 {
     public class LogController : Controller
     {
+        #region CONSTRUTOR
         private readonly Contexto _context;
 
         public LogController(Contexto context)
         {
             _context = context;
         }
+        #endregion
 
+        #region VISUALIZAR
         public async Task<IActionResult> Index(string? mes, string? ano)
         {
             //_Ano(ano);
@@ -49,5 +52,6 @@ namespace MVC.Controllers
 
             return mes;
         }
+        #endregion
     }
 }
