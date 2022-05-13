@@ -12,7 +12,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC", "MVC\MVC.csproj", "{C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{783E68B1-8E1B-4A83-B5F3-6E1E4E683464}"
 	ProjectSection(SolutionItems) = preProject
-		Documantation.txt = Documantation.txt
+		Documentation.txt = Documentation.txt
 	EndProjectSection
 EndProject
 Global
